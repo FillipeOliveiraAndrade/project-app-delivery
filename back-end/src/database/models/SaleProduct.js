@@ -1,35 +1,32 @@
-import { Model, INTEGER } from 'sequelize';
-import Product from './Product';
-import Sale from './Sale';
-export default class SaleProduct extends Model {}
 
+module.exports = (sequelize, DataTypes) => {
+  const SaleProduct = sequelize.define('SaleProduct', {
+    saleId: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      field: 'sale_id',
+    },
+    productId: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      field: 'product_id',
+    },
+    quantity: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    }
+  }, {
+    underscored: true,
+    timestamps: false,
+    modelName: 'sales_products',
+  })
 
-SaleProduct.init({
-  saleId: {
-    allowNull: false,
-    primaryKey: true,
-    type: INTEGER,
-    field: 'sale_id',
-  },
-  productId: {
-    allowNull: false,
-    primaryKey: true,
-    type: INTEGER,
-    field: 'product_id',
-  },
-  quantity: {
-    allowNull: false,
-    type: INTEGER,
+  SaleProduct.associate = ({ Sale, Product }) => {
+    SaleProduct.belongsTo(Sale, { foreignKey: 'saleId' } );
+    SaleProduct.belongsTo(Product, { foreignKey: 'productId' });
   }
-}, {
-  sequelize: db,
-  underscored: true,
-  timestamps: false,
-  modelName: 'sales_products',
-});
 
-SaleProduct.belongsTo(Sale, { foreignKey: 'saleId' });
-SaleProduct.belongsTo(Product, { foreignKey: 'productId' });
-
-Sale.hasMany(SaleProduct, { foreignKey: 'saleId' });
-Product.hasMany(SaleProduct, { foreignKey: 'productId' });
+  return SaleProduct;
+}
