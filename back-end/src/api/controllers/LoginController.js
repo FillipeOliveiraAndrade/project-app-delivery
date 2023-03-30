@@ -2,8 +2,8 @@ const loginService = require('../services/LoginService');
 
 async function login(req, res, next) {
   try {
-    const token = await loginService.login(req.body);
-    return res.status(200).json({ token });
+    const { user, token } = await loginService.login(req.body);
+    return res.status(200).json({ payload: { user, token } });
   } catch (error) {
     next(error);
   }

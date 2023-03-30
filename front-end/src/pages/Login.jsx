@@ -1,7 +1,7 @@
 import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { requestLogin, setToken, requestRole } from '../services/requests';
+import { NavLink, useHistory } from 'react-router-dom';
+import { requestLogin, setToken } from '../services/requests';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -9,20 +9,26 @@ export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const history = useHistory();
 
   async function login(event) {
     event.preventDefault();
 
     try {
-      const { token } = await requestLogin('/login', { email, password });
-      setToken(token);
-      const { role } = await requestRole('/login/role');
+      const token = await requestLogin('/login', { email, password });
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+      console.log(token);
+
+      setToken(token);
+
+      localStorage.setItem('token', JSON.stringify(token));
+      // localStorage.setItem('role', role);
 
       setIsLogged(true);
+
+      history.push('/customer/products');
     } catch (error) {
+      console.log(error);
       setFailedTryLogin(true);
       setIsLogged(false);
     }

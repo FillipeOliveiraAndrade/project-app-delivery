@@ -9,12 +9,12 @@ const setToken = (token) => {
 };
 
 const requestLogin = async (endpoint, body) => {
-  const { token } = await api.post(endpoint, body);
-  return token;
+  const { data } = await api.post(endpoint, body);
+  return data;
 };
 
 const requestRole = async (endpoint) => {
-  const { role } = await api.get(endpoint);
+  const role = await api.get(endpoint);
   return role;
 };
 
