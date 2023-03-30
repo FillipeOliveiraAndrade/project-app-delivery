@@ -9,7 +9,6 @@ export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
-  const [userRole, setUserRole] = useState('');
 
   async function login(event) {
     event.preventDefault();
@@ -21,8 +20,7 @@ export default function Login() {
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
-      console.log(email);
-      setUserRole(role);
+
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);
@@ -43,6 +41,8 @@ export default function Login() {
     }
     setFailedTryLogin(false);
   }, [email, password]);
+
+  if (isLogged) return <NavLink to="/matches" />;
 
   return (
     <section className="container">
