@@ -1,9 +1,13 @@
+const { join } = require('path');
+const jwt = require('jsonwebtoken');
+const jwtKey = require('fs').readFileSync(join(__dirname, '../../../jwt.evaluation.key'), 'utf-8');
 const loginService = require('../services/LoginService');
 
 async function login(req, res, next) {
   try {
-    const { user, token } = await loginService.login(req.body);
-    return res.status(200).json({ payload: { user, token } });
+    const token = await loginService.login(req.body);
+    const decodedToken = jwt.verify(token, jwtKey);
+    return res.status(200).json(decodedToken);
   } catch (error) {
     next(error);
   }
