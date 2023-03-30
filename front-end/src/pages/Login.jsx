@@ -42,7 +42,7 @@ export default function Login() {
     setFailedTryLogin(false);
   }, [email, password]);
 
-  if (isLogged) return <NavLink to="/matches" />;
+  if (isLogged) return <NavLink to="/admin/manage" />;
 
   return (
     <section className="container">
