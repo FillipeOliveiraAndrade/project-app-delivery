@@ -17,7 +17,7 @@ async function login(dto) {
     throw new CustomError('400', 'Invalid email or password');
   }
 
-  return jwt.sign({ email }, jwtKey);
+  return jwt.sign({ email, role: user.role }, jwtKey);
 }
 
 async function getUserRole(email) {

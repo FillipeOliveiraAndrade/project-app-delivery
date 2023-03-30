@@ -1,30 +1,38 @@
 import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { requestLogin, setToken, requestRole } from '../services/requests';
+import { useHistory } from 'react-router-dom';
+import requestLogin from '../services/requests';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const history = useHistory();
 
   async function login(event) {
     event.preventDefault();
 
     try {
-      const { token } = await requestLogin('/login', { email, password });
-      setToken(token);
-      const { role } = await requestRole('/login/role');
+      const { data } = await requestLogin('/login', { email, password });
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+      localStorage.setItem('user', JSON.stringify(data));
 
-      setIsLogged(true);
+      switch (data.role) {
+      case 'administrator':
+        history.push('/admin/manage');
+        break;
+      case 'seller':
+        history.push('/seller/orders');
+        break;
+      case 'customer':
+        history.push('/customer/products');
+        break;
+      default:
+        break;
+      }
     } catch (error) {
       setFailedTryLogin(true);
-      setIsLogged(false);
     }
   }
 
@@ -42,15 +50,13 @@ export default function Login() {
     setFailedTryLogin(false);
   }, [email, password]);
 
-  if (isLogged) return <NavLink to="/admin/manage" />;
-
   return (
     <section className="container">
-      <form>
+      <form onSubmit={ login }>
         <label htmlFor="email-input">
           Login
           <input
-            type="text"
+            type="email"
             className=""
             id="email-input"
             value={ email }
@@ -63,6 +69,7 @@ export default function Login() {
           Senha
           <input
             type="password"
+            minLength="6"
             className=""
             id="password-input"
             value={ password }
@@ -74,14 +81,14 @@ export default function Login() {
         <button
           data-testid="common_login__button-login"
           type="submit"
-          onClick={ (event) => login(event) }
+          // onClick={ (event) => login(event) }
           disabled={ isDisabled }
         >
           Login
         </button>
         <button
           data-testid="common_login__button-register"
-          type="submit"
+          type="button"
           // onClick={}
         >
           Ainda não tenho conta
