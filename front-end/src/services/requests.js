@@ -7,3 +7,4 @@ const api = axios.create({
 const requestLogin = async (endpoint, body) => api.post(endpoint, body);
 
 export default requestLogin;
+

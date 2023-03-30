@@ -8,6 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+
   const history = useHistory();
 
   async function login(event) {
@@ -32,6 +33,7 @@ export default function Login() {
         break;
       }
     } catch (error) {
+      console.log(error);
       setFailedTryLogin(true);
     }
   }
