@@ -8,7 +8,7 @@
 
 .c-order-number {
   align-items: center;
-  background: #ffffff;
+  background: white;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -26,10 +26,9 @@
 .wrapper-order-status {
   display: flex;
   gap: 8px;
-  /* padding: 5px; */
 }
 
-.wrapper-order-status>span {
+.wrapper-order-status > span {
   background: #ccb800;
   border-radius: 8px;
   padding: 20px;
@@ -53,7 +52,7 @@
 
 .c-address {
   display: flex;
-  font-size: .875rem;
+  font-size: 0.875rem;
   gap: 4px;
   justify-content: flex-end;
 }
