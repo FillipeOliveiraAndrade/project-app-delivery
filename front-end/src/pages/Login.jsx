@@ -16,7 +16,7 @@ export default function Login() {
 
     try {
       const { data } = await requestLogin('/login', { email, password });
-      console.log(data);
+
       localStorage.setItem('user', JSON.stringify(data));
 
       switch (data.role) {
