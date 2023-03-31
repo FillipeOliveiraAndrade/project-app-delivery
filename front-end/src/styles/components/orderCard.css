@@ -1,0 +1,59 @@
+.c-order-card {
+  background: #f2f2f2;
+  border: 0.5px solid #b1c2be;
+  border-radius: 4px;
+  display: flex;
+  width: 27%;
+}
+
+.c-order-number {
+  align-items: center;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.c-order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+}
+
+.wrapper-order-status {
+  display: flex;
+  gap: 8px;
+  /* padding: 5px; */
+}
+
+.wrapper-order-status>span {
+  background: #ccb800;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.wrapper-order-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 3px;
+}
+
+.wrapper-order-info > span {
+  background: #eaf1ef;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 5px 20px;
+
+}
+
+.c-address {
+  display: flex;
+  font-size: .875rem;
+  gap: 4px;
+  justify-content: flex-end;
+}

@@ -1,0 +1,7 @@
+.c-seller-order {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 70px;
+}
