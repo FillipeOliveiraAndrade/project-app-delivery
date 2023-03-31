@@ -1,6 +1,6 @@
-a:link,
-a:visited,
-a:hover,
+a:link, 
+a:visited, 
+a:hover, 
 a:active {
   color: inherit;
   text-decoration: none;
@@ -17,31 +17,29 @@ a:active {
 .item-navbar {
   align-items: center;
   display: flex;
+  font-weight: 700;
   justify-content: center;
   padding: 0 50px;
 }
 
 header > a:first-of-type {
-  background:#2FC18C;
+  background: #2FC18C;
   font-size: 1.25rem;
-  font-weight: bold;
 }
 
 .c-empty {
   background: #036B52;
   flex-grow: 1;
-} 
+}
 
 header > p:first-of-type {
   background: #421981;
   color: #F2FFFC;
-  font-size: 1.30rem;
-  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 header > a:last-of-type {
-  background:#056CF9;
+  background: #056CF9;
   color: #F2FFFC;
   font-size: 1rem;
-  font-weight: bold;
 }
