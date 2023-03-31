@@ -1,10 +1,10 @@
 const routers = require('express').Router();
 const loginRoutes = require('./LoginRoutes');
 const testeRoutes = require('./TesteRoutes');
-const sellerRoutes = require('./SellerRoutes');
+const salesRoutes = require('./SalesRoutes');
 
 routers.use(testeRoutes);
 routers.use(loginRoutes);
-routers.use(sellerRoutes);
+routers.use(salesRoutes);
 
 module.exports = routers;

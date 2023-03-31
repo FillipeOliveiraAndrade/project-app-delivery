@@ -28,12 +28,6 @@ async function login(dto) {
   return { ...payloadUser, token };
 }
 
-async function getUserRole(email) {
-  const user = await User.findOne({ where: { email } });
-  return user.role;
-}
-
 module.exports = { 
   login,
-  getUserRole,
 };

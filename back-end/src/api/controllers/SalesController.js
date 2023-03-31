@@ -1,4 +1,4 @@
-const sellerService = require('../services/SellerService');
+const sellerService = require('../services/SalesService');
 
 async function readAll(req, res) {
   const result = await sellerService.readAll();
