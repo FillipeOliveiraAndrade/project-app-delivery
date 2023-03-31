@@ -1,6 +1,6 @@
 import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import requestLogin from '../services/requests';
 
 export default function Login() {
@@ -88,13 +88,14 @@ export default function Login() {
         >
           Login
         </button>
-        <button
-          data-testid="common_login__button-register"
-          type="button"
-          // onClick={}
-        >
-          Ainda não tenho conta
-        </button>
+        <Link to="/register">
+          <button
+            data-testid="common_login__button-register"
+            type="button"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
         {
           failedTryLogin
             && (
