@@ -6,8 +6,8 @@
 }
 
 h1 {
-  border-radius: 8px;
   align-self: center;
+  border-radius: 8px;
   padding-bottom: 20px;
 }
 
@@ -37,4 +37,4 @@ button {
 span {
   color: red;
   font-size: 0.75rem;
-}  
+}
