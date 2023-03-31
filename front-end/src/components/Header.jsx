@@ -31,7 +31,7 @@ function Header({ userName }) {
 }
 
 Header.propTypes = {
-  userName: PropTypes.string.isRequired,
-};
+  userName: PropTypes.string,
+}.isRequired;
 
 export default Header;

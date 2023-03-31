@@ -12,12 +12,12 @@ function OrderCard({
   deliveryNumber,
 }) {
   const dateFormat = moment.utc(saleDate).format('DD/MM/YY');
-
+  console.log(`seller_orders__element-order-id-${orderId}`);
   return (
     <section className="c-order-card">
       <div
         className="c-order-number"
-        data-testid="seller_orders__element-order-id-<id>"
+        data-testid={ `seller_orders__element-order-id-${orderId}` }
       >
         <span>Pedido</span>
         <span>{orderId}</span>
@@ -25,18 +25,18 @@ function OrderCard({
       <div className="c-order-details">
         <div className="wrapper-order-status">
           <span
-            data-testid="seller_orders__element-delivery-status-<id>"
+            data-testid={ `seller_orders__element-delivery-status-${orderId}` }
           >
             {status}
           </span>
           <div className="wrapper-order-info">
             <span
-              data-testid="seller_orders__element-order-date-<id>"
+              data-testid={ `seller_orders__element-order-date-${orderId}` }
             >
               {dateFormat}
             </span>
             <span
-              data-testid="seller_orders__element-card-price-<id>"
+              data-testid={ `seller_orders__element-card-price-${orderId}` }
             >
               R$
               {' '}
@@ -46,7 +46,7 @@ function OrderCard({
         </div>
         <div className="c-address">
           <span
-            data-testid="seller_orders__element-card-address-<id>"
+            data-testid={ `seller_orders__element-card-address-${orderId}` }
           >
             {deliveryAddress}
           </span>
@@ -58,12 +58,12 @@ function OrderCard({
 }
 
 OrderCard.propTypes = {
-  orderId: PropTypes.number.isRequired,
-  status: PropTypes.string.isRequired,
-  saleDate: PropTypes.string.isRequired,
-  totalPrice: PropTypes.string.isRequired,
-  deliveryAddress: PropTypes.string.isRequired,
-  deliveryNumber: PropTypes.string.isRequired,
-};
+  orderId: PropTypes.number,
+  status: PropTypes.string,
+  saleDate: PropTypes.string,
+  totalPrice: PropTypes.string,
+  deliveryAddress: PropTypes.string,
+  deliveryNumber: PropTypes.string,
+}.isRequired;
 
 export default OrderCard;
