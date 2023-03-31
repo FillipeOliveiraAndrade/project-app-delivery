@@ -1,7 +1,18 @@
 import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 import '../styles/components/orderCard.css';
 
-function OrderCard() {
+function OrderCard({
+  orderId,
+  status,
+  saleDate,
+  totalPrice,
+  deliveryAddress,
+  deliveryNumber,
+}) {
+  const dateFormat = moment.utc(saleDate).format('DD/MM/YY');
+
   return (
     <section className="c-order-card">
       <div
@@ -9,25 +20,27 @@ function OrderCard() {
         data-testid="seller_orders__element-order-id-<id>"
       >
         <span>Pedido</span>
-        <span>0001</span>
+        <span>{orderId}</span>
       </div>
       <div className="c-order-details">
         <div className="wrapper-order-status">
           <span
             data-testid="seller_orders__element-delivery-status-<id>"
           >
-            Pendente
+            {status}
           </span>
           <div className="wrapper-order-info">
             <span
               data-testid="seller_orders__element-order-date-<id>"
             >
-              08/04/21
+              {dateFormat}
             </span>
             <span
               data-testid="seller_orders__element-card-price-<id>"
             >
-              R$ 23,80
+              R$
+              {' '}
+              {totalPrice}
             </span>
           </div>
         </div>
@@ -35,13 +48,22 @@ function OrderCard() {
           <span
             data-testid="seller_orders__element-card-address-<id>"
           >
-            Rua Irmãos Monteiro, bairro pedras,
+            {deliveryAddress}
           </span>
-          <span>851</span>
+          <span>{deliveryNumber}</span>
         </div>
       </div>
     </section>
   );
 }
+
+OrderCard.propTypes = {
+  orderId: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  totalPrice: PropTypes.string.isRequired,
+  deliveryAddress: PropTypes.string.isRequired,
+  deliveryNumber: PropTypes.string.isRequired,
+};
 
 export default OrderCard;

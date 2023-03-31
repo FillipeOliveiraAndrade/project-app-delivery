@@ -8,8 +8,8 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await requestData('/sales');
-      setSales(result);
+      const { data } = await requestData('/sales');
+      setSales(data);
     }
 
     fetchData();
