@@ -11,7 +11,7 @@ module.exports = {
         delivery_address: "Rua Claudio Nunes, centro",
         delivery_number: "80",
         sale_date: new Date(),
-        status: 'pendente'
+        status: 'entregue'
       },
       {
         id: 2,
@@ -31,7 +31,7 @@ module.exports = {
         delivery_address: "Rua Carlos Abraão, centro",
         delivery_number: "6",
         sale_date: new Date(),
-        status: 'pendente'
+        status: 'preparando'
       },
     ])
   },

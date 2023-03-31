@@ -1,5 +1,5 @@
-import React from 'react';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/components/orderCard.css';
 
@@ -12,9 +12,24 @@ function OrderCard({
   deliveryNumber,
 }) {
   const dateFormat = moment.utc(saleDate).format('DD/MM/YY');
-  console.log(`seller_orders__element-order-id-${orderId}`);
+  const history = useHistory();
+
+  function handleOrderDetails(id) {
+    history.push(`/seller/orders/${id}`);
+  }
+
   return (
-    <section className="c-order-card">
+    <section
+      className="c-order-card"
+      onClick={ () => handleOrderDetails(orderId) }
+      role="button"
+      tabIndex="0"
+      onKeyDown={ (e) => {
+        if (e.key === 'Enter') {
+          handleOrderDetails(orderId);
+        }
+      } }
+    >
       <div
         className="c-order-number"
         data-testid={ `seller_orders__element-order-id-${orderId}` }
@@ -26,6 +41,7 @@ function OrderCard({
         <div className="wrapper-order-status">
           <span
             data-testid={ `seller_orders__element-delivery-status-${orderId}` }
+            className={ `btn-status-${status}` }
           >
             {status}
           </span>

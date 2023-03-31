@@ -6,7 +6,7 @@ function Header({ userName }) {
   return (
     <header className="c-navbar">
       <a
-        href="/seller/orders/:id"
+        href="/seller/orders"
         data-testid="customer_products__element-navbar-link-orders"
         className="item-navbar"
       >
