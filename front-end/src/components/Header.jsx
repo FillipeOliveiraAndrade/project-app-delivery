@@ -20,9 +20,10 @@ function Header({ userName }) {
         {userName}
       </p>
       <a
-        href="/seller/orders/:id"
+        href="/"
         data-testid="customer_products__element-navbar-link-logout"
         className="item-navbar"
+        onClick={ () => localStorage.removeItem('user') }
       >
         Sair
       </a>
