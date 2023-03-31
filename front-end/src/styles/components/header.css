@@ -1,7 +1,4 @@
-a:link, 
-a:visited, 
-a:hover, 
-a:active {
+a:link, a:visited, a:hover, a:active {
   color: inherit;
   text-decoration: none;
 }
@@ -23,23 +20,23 @@ a:active {
 }
 
 header > a:first-of-type {
-  background: #2FC18C;
+  background: #2fc18c;
   font-size: 1.25rem;
 }
 
 .c-empty {
-  background: #036B52;
+  background: #036b52;
   flex-grow: 1;
 }
 
 header > p:first-of-type {
   background: #421981;
-  color: #F2FFFC;
+  color: #f2fffc;
   font-size: 1.3rem;
 }
 
 header > a:last-of-type {
-  background: #056CF9;
-  color: #F2FFFC;
+  background: #056cf9;
+  color: #f2fffc;
   font-size: 1rem;
 }
