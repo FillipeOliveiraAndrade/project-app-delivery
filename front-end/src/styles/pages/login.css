@@ -5,7 +5,7 @@
   justify-content: center;
 }
 
-form {
+.container form {
   background: #f2f2f2;
   border-radius: 8px;
   display: flex;
@@ -15,20 +15,20 @@ form {
   width: 20%;
 }
 
-label {
+.container label {
   display: flex;
   flex-direction: column;
 }
 
-input {
+.container input {
   padding: 5px;
 }
 
-button {
+.container button {
   padding: 5px;
 }
 
-span {
+.container span {
   color: red;
   font-size: 0.75rem;
 }
