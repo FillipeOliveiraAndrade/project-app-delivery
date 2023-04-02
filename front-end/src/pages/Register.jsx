@@ -1,11 +1,27 @@
 import '../styles/pages/register.css';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import register from '../services/register';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isDisable, setIsDisable] = useState(true);
+  const [failCreate, setFailCreate] = useState(false);
+
+  const history = useHistory();
+
+  async function tryRegister(event) {
+    event.preventDefault();
+    try {
+      await register('/register', { email, password, name });
+      return history.push('/customer/products');
+    } catch (error) {
+      console.log(error);
+      setFailCreate(true);
+    }
+  }
 
   useEffect(() => {
     const validateRegister = () => {
@@ -23,7 +39,7 @@ export default function Register() {
 
   return (
     <section className="container">
-      <form>
+      <form onSubmit={ register }>
         <h1>Cadastro</h1>
         <label htmlFor="name">
           Nome
@@ -65,14 +81,14 @@ export default function Register() {
         <button
           data-testid="common_register__button-register"
           type="submit"
-          // onClick={ (event) => register(event) }
+          onClick={ (event) => tryRegister(event) }
           disabled={ isDisable }
         >
           Register
         </button>
 
-        {/* {
-          invalidRegister
+        {
+          failCreate
                 && (
                   <span
                     data-testid="common_register__element-invalid_register"
@@ -80,7 +96,7 @@ export default function Register() {
                     Email ou senha inválido
                   </span>
                 )
-        } */}
+        }
       </form>
     </section>
 
