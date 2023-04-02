@@ -1,6 +1,6 @@
 import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import requestLogin from '../services/requests';
 
 export default function Login() {
@@ -83,18 +83,19 @@ export default function Login() {
         <button
           data-testid="common_login__button-login"
           type="submit"
-          // onClick={ (event) => login(event) }
+          onClick={ (event) => login(event) }
           disabled={ isDisabled }
         >
           Login
         </button>
-        <button
-          data-testid="common_login__button-register"
-          type="button"
-          // onClick={}
-        >
-          Ainda não tenho conta
-        </button>
+        <Link to="/register">
+          <button
+            data-testid="common_login__button-register"
+            type="button"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
         {
           failedTryLogin
             && (
