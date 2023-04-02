@@ -83,7 +83,7 @@ export default function Login() {
         <button
           data-testid="common_login__button-login"
           type="submit"
-          // onClick={ (event) => login(event) }
+          onClick={ (event) => login(event) }
           disabled={ isDisabled }
         >
           Login

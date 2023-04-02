@@ -1,6 +1,26 @@
 import '../styles/pages/register.css';
+import { useEffect, useState } from 'react';
 
 export default function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
+
+  useEffect(() => {
+    const validateRegister = () => {
+      const regex = /[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]*\w$/;
+      const SIX = 6;
+      const TWELVE = 12;
+      return (regex.test(email) && password.length >= SIX && name.length >= TWELVE);
+    };
+    if (validateRegister()) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [email, password, name]);
+
   return (
     <section className="container">
       <form>
@@ -10,9 +30,9 @@ export default function Register() {
           <input
             type="name"
             className=""
-            id="password-input"
-            // value={ password }
-            // onChange={ ({ target: { value } }) => setPassword(value) }
+            id="name-input"
+            value={ name }
+            onChange={ ({ target: { value } }) => setName(value) }
             data-testid="common_register__input-name"
             placeholder="Seu nome"
           />
@@ -23,8 +43,8 @@ export default function Register() {
             type="email"
             className=""
             id="email-input"
-            // value={ email }
-            // onChange={ ({ target: { value } }) => setEmail(value) }
+            value={ email }
+            onChange={ ({ target: { value } }) => setEmail(value) }
             data-testid="common_register__input-email"
             placeholder="seu-email@site.com.br"
           />
@@ -36,8 +56,8 @@ export default function Register() {
             minLength="6"
             className=""
             id="password-input"
-            // value={ password }
-            // onChange={ ({ target: { value } }) => setPassword(value) }
+            value={ password }
+            onChange={ ({ target: { value } }) => setPassword(value) }
             data-testid="common_register__input-password"
             placeholder="******"
           />
@@ -45,10 +65,10 @@ export default function Register() {
         <button
           data-testid="common_register__button-register"
           type="submit"
-          // onClick={ (event) => login(event) }
-          // disabled={ isDisabled }
+          // onClick={ (event) => register(event) }
+          disabled={ isDisable }
         >
-          Login
+          Register
         </button>
 
         {/* {
