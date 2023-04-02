@@ -34,7 +34,7 @@ button {
   padding: 5px;
 }
 
-span {
+.container span {
   color: red;
   font-size: 0.75rem;
 }
