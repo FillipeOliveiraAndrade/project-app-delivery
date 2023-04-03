@@ -1,10 +1,10 @@
-import Header from '../components/Header';
+import HeaderCustomer from '../components/HeaderCustomer';
 
 export default function CustomerOrderDetails() {
   return (
     <>
       <h1>CustomerOrderDetails</h1>
-      <Header />
+      <HeaderCustomer />
     </>
   );
 }

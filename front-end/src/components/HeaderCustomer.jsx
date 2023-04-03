@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css';
+import './HeaderCustomer.css';
 import { useHistory } from 'react-router-dom';
 
 /*
@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
   mas irei trocar para div, é temporário!
 */
 
-function Header() {
+function HeaderCustomer() {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
 
@@ -62,4 +62,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderCustomer;
