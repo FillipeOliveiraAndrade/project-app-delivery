@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HeaderCustomer from '../components/HeaderCustomer';
 import OrderCard2 from '../components/OrderCard2';
 
