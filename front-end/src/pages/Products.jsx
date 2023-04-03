@@ -4,6 +4,7 @@ import { requestProducts } from '../services/requests';
 import ProductsCard from '../components/ProductsCard';
 import HeaderCustomer from '../components/HeaderCustomer';
 import Context from '../context/Context';
+import ShoppingCart from '../components/ShoppingCart';
 
 export default function Producs() {
   const {
@@ -33,6 +34,7 @@ export default function Producs() {
           />
         ))
       }
+      <ShoppingCart />
     </>
   );
 }

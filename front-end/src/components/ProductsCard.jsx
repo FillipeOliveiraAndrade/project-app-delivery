@@ -31,6 +31,7 @@ function ProductsCard({ product }) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+        // onClick={ () => removeProductInTheCart(product) }
       >
         -
       </button>
@@ -43,6 +44,7 @@ function ProductsCard({ product }) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${product.id}` }
+        onClick={ () => addProductInTheCart(product) }
       >
         +
       </button>
