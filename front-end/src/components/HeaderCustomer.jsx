@@ -25,10 +25,6 @@ function HeaderCustomer() {
     history.push('/customer/orders');
   }
 
-  function logoutCustomer() {
-    localStorage.removeItem('user');
-  }
-
   return (
     <nav className="nav-container">
       <button
@@ -54,7 +50,7 @@ function HeaderCustomer() {
       <button
         type="button"
         data-testid={ `${customerProducts}-${logout}` }
-        onClick={ logoutCustomer }
+        onClick={ () => localStorage.removeItem('user') }
       >
         Sair
       </button>
