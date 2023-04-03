@@ -1,11 +1,14 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
 
 export default function Provider({ children }) {
+  const [products, setProducts] = useState([]);
+
   const contextValue = useMemo(() => ({
-    teste: 'aeeeeeeeeeee',
-  }), []);
+    products,
+    setProducts,
+  }), [products]);
 
   return (
     <Context.Provider value={ contextValue }>
