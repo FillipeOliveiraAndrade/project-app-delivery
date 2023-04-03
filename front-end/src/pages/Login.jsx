@@ -1,7 +1,7 @@
 import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import requestLogin from '../services/requests';
+import { requestLogin } from '../services/requests';
 
 export default function Login() {
   const [email, setEmail] = useState('');
