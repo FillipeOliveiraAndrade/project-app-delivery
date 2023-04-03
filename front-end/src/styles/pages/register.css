@@ -5,7 +5,13 @@
   justify-content: center;
 }
 
-.container form {
+h1 {
+  align-self: center;
+  border-radius: 8px;
+  padding-bottom: 20px;
+}
+
+form {
   background: #f2f2f2;
   border-radius: 8px;
   display: flex;
@@ -15,20 +21,20 @@
   width: 20%;
 }
 
-.container label {
+label {
   display: flex;
   flex-direction: column;
 }
 
-.container input {
+input {
   padding: 5px;
 }
 
-.container button {
+button {
   padding: 5px;
 }
 
-.container span {
+span {
   color: red;
   font-size: 0.75rem;
 }

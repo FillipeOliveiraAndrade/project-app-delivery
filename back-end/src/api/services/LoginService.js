@@ -17,12 +17,15 @@ async function login(dto) {
     throw new CustomError('400', 'Invalid email or password');
   }
 
-  return jwt.sign({ email, name: user.name, role: user.role }, jwtKey);
-}
+  const payloadUser = {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
 
-async function getUserRole(email) {
-  const user = await User.findOne({ where: { email } });
-  return user.role;
+  const token = jwt.sign(payloadUser, jwtKey);
+
+  return { ...payloadUser, token };
 }
 
 module.exports = { 

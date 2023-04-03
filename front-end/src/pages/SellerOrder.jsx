@@ -1,10 +1,14 @@
-import HeaderCustomer from '../components/HeaderCustomer';
+import Header from '../components/Header';
+import OrderCard from '../components/OrderCard';
+import '../styles/pages/sellerOrder.css';
 
 export default function SellerOrder() {
   return (
-    <>
-      <h1>SellerOrder</h1>
-      <HeaderCustomer />
-    </>
+    <div>
+      <Header />
+      <div className="c-seller-order">
+        <OrderCard />
+      </div>
+    </div>
   );
 }
