@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import { requestProducts } from '../services/requests';
 import ProductsCard from '../components/ProductsCard';
-import Header from '../components/Header';
+import HeaderCustomer from '../components/HeaderCustomer';
 import Context from '../context/Context';
 
 export default function Producs() {
@@ -22,7 +22,7 @@ export default function Producs() {
 
   return (
     <>
-      <Header />
+      <HeaderCustomer />
       <h1>Products</h1>
       {
         products.map((product) => (
