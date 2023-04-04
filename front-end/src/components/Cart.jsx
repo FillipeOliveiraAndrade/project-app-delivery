@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 // import context from '../context/Context';
 import CartContext from '../context/CartContext';
-import convertToReais from '../services/convertToReais';
 import '../styles/components/cart.css';
 
 function Cart() {
