@@ -6,14 +6,6 @@ import '../styles/components/tableItens.css';
 export default function TableItens({ order, index }) {
   // const { removeItemCheckout } = useContext(context);
 
-  // const price = order.price.toFixed(2);
-  // const formatedPrice = price.replace('.', ',');
-
-  // const subTotal = () => {
-  //   const total = (order.quantity * order.price).toFixed(2);
-  //   return total.replace('.', ',');
-  // };
-
   // const handleCartRemove = (id) => {
   //   const filterOrders = cart.items.filter((product) => product.id !== id);
   //   setCart((prev) => ({

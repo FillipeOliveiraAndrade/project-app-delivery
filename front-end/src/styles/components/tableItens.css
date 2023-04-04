@@ -1,8 +1,8 @@
-.main-section {
+.main-section .address-section {
   display: flex;
-  justify-content: start;
   flex-direction: column;
   height: 400px;
+  justify-content: start;
   margin: 42px 140px;
 }
 
@@ -11,7 +11,7 @@ h1 {
 }
 
 table {
-  border: 1px solid rgb(169, 169, 169);
+  border: 1px solid darkgrey;
   border-radius: 5px;
 }
 
@@ -20,23 +20,15 @@ tr {
   font-weight: 400;
 }
 
-.address-section {
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
-  height: 400px;
-  margin: 42px 140px;
-}
-
 .address-section select {
+  padding: 10px;
   width: 300px;
-  padding: 10px ;
 }
 
 .form-address {
-  display: flex;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 5px #a5a5a5;
+  display: flex;
 }
 
 .fields-address {
@@ -44,7 +36,7 @@ tr {
 }
 
 .fields-address span {
-  margin: 0px 15px;
+  margin: 0 15px;
 }
 
 .fields-address select {
@@ -52,9 +44,9 @@ tr {
 }
 
 .fields-address input {
-  width: 200px;
-  padding: 10px;
   margin: 10px;
+  padding: 10px;
+  width: 200px;
 }
 
 .fields-address .address {
@@ -62,14 +54,14 @@ tr {
 }
 
 .button-submit {
-  width: 300px;
-  padding: 15px;
+  background-color: #036b52;
+  border-radius: 5px;
+  color: #f0fffb;
   display: flex;
+  font-size: 20px;
+  font-weight: 700;
   justify-content: center;
   margin: 10px auto;
-  background-color: #036b52;
-  color: #F2FFFC;
-  font-weight: 700;
-  font-size: 20px;
-  border-radius: 5px;
+  padding: 15px;
+  width: 300px;
 }
