@@ -45,7 +45,7 @@ export default function Admin() {
           value={ name }
           onChange={ ({ target: { value } }) => setName(value) }
           data-testid="admin_manage__input-name"
-          placeholder="Seu nome"
+          placeholder="Nome e sobrenome"
         />
       </label>
       <label htmlFor="email-input">
@@ -81,7 +81,6 @@ export default function Admin() {
           value={ role }
           type="role"
           onChange={ ({ target: { value } }) => setRole(value) }
-          placeholder="Seu nome"
         >
           <option>seller</option>
           <option>customer</option>
