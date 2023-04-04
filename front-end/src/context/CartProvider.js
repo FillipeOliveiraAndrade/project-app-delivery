@@ -8,7 +8,7 @@ export default function CartProvider({ children }) {
     total: 0,
   });
 
-  localStorage.setItem('cartItems', JSON.stringify(cart));
+  localStorage.setItem('cart', JSON.stringify(cart));
 
   const updateCart = useCallback((product) => {
     const productExist = cart.items.find((item) => item.id === product.id);
@@ -21,6 +21,7 @@ export default function CartProvider({ children }) {
     if (product.quantity > 0) {
       setCart((prevState) => ({ ...prevState, items: [...filteredCart, product] }));
     }
+
     if (product.quantity === 0) {
       setCart((prevState) => ({ ...prevState, items: filteredCart }));
     }

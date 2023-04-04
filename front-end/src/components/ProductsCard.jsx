@@ -6,7 +6,6 @@ import CartContext from '../context/CartContext';
 function ProductsCard({ product }) {
   const { updateCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(0);
-  // const [counter, setCounter] = useState(0);
 
   const customerProducts = 'customer_products__element';
   const cardPrice = 'card-price';
@@ -26,32 +25,6 @@ function ProductsCard({ product }) {
       price: Number(product.price),
     });
   }, [quantity]);
-
-  // const oneLess = -1;
-
-  // useEffect(() => {
-  //   localStorage.setItem('shoppingCart', JSON.stringify(productsInTheCart));
-  // }, [productsInTheCart]);
-
-  // function removeProductInTheCart(productToBeRemoved) {
-  //   if (counter === 0) return;
-  //   setCounter((prevState) => prevState - 1);
-
-  //   const productIndex = productsInTheCart
-  //     .findIndex((item) => item.id === productToBeRemoved.id);
-
-  //   if (productIndex !== oneLess) {
-  //     const updatedCartItems = [...productsInTheCart];
-  //     updatedCartItems.splice(productIndex, 1);
-  //     setProductsInTheCart(updatedCartItems);
-  //   }
-  // }
-
-  // function addProductInTheCart(newProduct) {
-  //   setCounter((prevState) => prevState + 1);
-
-  //   setProductsInTheCart((prevState) => [newProduct, ...prevState]);
-  // }
 
   return (
     <div>
@@ -79,7 +52,6 @@ function ProductsCard({ product }) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${product.id}` }
-        // onClick={ () => removeProductInTheCart(product) }
         onClick={ decrement }
       >
         -
@@ -95,7 +67,6 @@ function ProductsCard({ product }) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${product.id}` }
-        // onClick={ () => addProductInTheCart(product) }
         onClick={ () => setQuantity(quantity + 1) }
       >
         +
