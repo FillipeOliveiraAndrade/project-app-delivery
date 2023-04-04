@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import context from '../context/Context';
+// import { useContext } from 'react';
+// import context from '../context/CartContext';
 import '../styles/components/tableItens.css';
 
 export default function TableItens({ order, index }) {
-  const { orders, setOrders } = useContext(context);
+  // const { removeItemCheckout } = useContext(context);
 
-  const price = order.price.toFixed(2);
-  const formatedPrice = price.replace('.', ',');
+  // const price = order.price.toFixed(2);
+  // const formatedPrice = price.replace('.', ',');
 
-  const subTotal = () => {
-    const total = (order.quantity * order.price).toFixed(2);
-    return total.replace('.', ',');
-  };
+  // const subTotal = () => {
+  //   const total = (order.quantity * order.price).toFixed(2);
+  //   return total.replace('.', ',');
+  // };
 
-  const handleCartRemove = (productId) => {
-    const filterOrders = orders.filter(({ id }) => id !== productId);
-    setOrders(filterOrders);
+  // const handleCartRemove = (id) => {
+  //   const filterOrders = cart.items.filter((product) => product.id !== id);
+  //   setCart((prev) => ({
+  //     ...prev,
+  //     items: filterOrders,
+  //   }));
 
-    return filterOrders;
-  };
+  //   return filterOrders;
+  // };
 
   return (
     <tr>
@@ -33,17 +36,17 @@ export default function TableItens({ order, index }) {
         {order.quantity}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
-        {formatedPrice}
+        {order.price.toFixed(2).replace('.', ',')}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
-        {subTotal()}
+        {(order.price * order.quantity).toFixed(2).replace('.', ',')}
       </td>
       <td>
         <button
           data-testId={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"
           name="remove"
-          onClick={ handleCartRemove(order.id) }
+          // onClick={ () => removeItemCheckout(order) }
         >
           Remover
         </button>

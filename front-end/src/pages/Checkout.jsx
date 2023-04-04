@@ -1,17 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
 import TableItens from '../components/TableItens';
-import context from '../context/Context';
-import { checkout } from '../services/requests';
+import context from '../context/CartContext';
+// import { checkout } from '../services/requests';
 import '../styles/components/tableItens.css';
 
 export default function Checkout() {
-  const history = useHistory();
-  const { orders } = useContext(context);
+  // const history = useHistory();
+  const { cart } = useContext(context);
   const [isDisabled, setIsDisabled] = useState(true);
+  // const [cart, setCart] = useState([]);
   const [sellersInfo, setSellersInfo] = useState([]);
-  const [total, setTotal] = useState('0.00');
+  // const [total, setTotal] = useState('0.00');
   const [customerInfo, setCustomerInfo] = useState(
     { sellerId: '', deliveryAddress: '', deliveryNumber: '' },
   );
@@ -29,7 +30,11 @@ export default function Checkout() {
       setSellersInfo(data);
     };
     fetchSellers();
+
+    // setCart(JSON.parse(localStorage.getItem('cart')));
   }, []);
+
+  console.log(cart);
 
   useEffect(() => {
     setIsDisabled(
@@ -38,21 +43,21 @@ export default function Checkout() {
     );
   }, [customerInfo]);
 
-  const formatTotal = (newTotal) => {
-    const strTotal = Number(newTotal).toFixed(2);
-    const formatedTotal = strTotal.replace('.', ',');
-    return formatedTotal;
-  };
+  // const formatTotal = (newTotal) => {
+  //   const strTotal = Number(newTotal).toFixed(2);
+  //   const formatedTotal = strTotal.replace('.', ',');
+  //   return formatedTotal;
+  // };
 
-  useEffect(() => {
-    const newTotal = orders.reduce((acc, order) => {
-      const floatPrice = parseFloat(order.price);
-      acc += floatPrice * order.quantity;
-      return acc;
-    }, 0);
+  // useEffect(() => {
+  //   const newTotal = cart.reduce((acc, order) => {
+  //     const floatPrice = parseFloat(order.price);
+  //     acc += floatPrice * order.quantity;
+  //     return acc;
+  //   }, 0);
 
-    setTotal(newTotal);
-  }, [orders]);
+  //   setTotal(newTotal);
+  // }, [orders]);
 
   const handleChange = ({ target: { name, value } }) => {
     setCustomerInfo((prevstate) => ({
@@ -61,17 +66,17 @@ export default function Checkout() {
     }));
   };
 
-  const handleFinalize = async (event) => {
-    event.preventDefault();
+  // const handleFinalize = async (event) => {
+  //   event.preventDefault();
 
-    const result = await checkout({
-      ...customerInfo,
-      totalPrice: total,
-      products: orders,
-    });
+  //   const result = await checkout({
+  //     ...customerInfo,
+  //     totalPrice: total,
+  //     products: orders,
+  //   });
 
-    history.push(`/customer/orders/${result.id}`);
-  };
+  //   history.push(`/customer/orders/${result.id}`);
+  // };
 
   const data = [
     'Item',
@@ -84,6 +89,7 @@ export default function Checkout() {
 
   return (
     <section>
+      { console.log('cartItems', cart.items)}
       <HeaderProducts />
       <section className="main-section">
         <h1>Finalizar Pedido</h1>
@@ -96,15 +102,20 @@ export default function Checkout() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
-              <TableItens order={ order } key={ order.id } index={ index } />
-            ))}
+            {
+              cart
+                && (
+                  cart.items.map((order, index) => (
+                    <TableItens order={ order } key={ order.id } index={ index } />
+                  ))
+                )
+            }
           </tbody>
         </table>
         <section>
-          <span>Total:</span>
+          <span>Total: </span>
           <span data-testid="customer_checkout__element-order-total-price">
-            {formatTotal(total)}
+            {cart.total.toFixed(2).replace('.', ',')}
           </span>
         </section>
       </section>
@@ -166,7 +177,7 @@ export default function Checkout() {
           type="submit"
           name="pedido"
           disabled={ isDisabled }
-          onClick={ handleFinalize }
+          // onClick={ handleFinalize }
         >
           FINALIZAR PEDIDO
         </button>

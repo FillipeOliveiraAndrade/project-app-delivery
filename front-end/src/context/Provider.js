@@ -4,6 +4,7 @@ import Context from './Context';
 
 export default function Provider({ children }) {
   const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loggedUser, setLoggedUser] = useState({
     name: '',
     email: '',
@@ -16,7 +17,9 @@ export default function Provider({ children }) {
     setOrders,
     loggedUser,
     setLoggedUser,
-  }), [orders, loggedUser]);
+    products,
+    setProducts,
+  }), [orders, loggedUser, products]);
 
   return (
     <Context.Provider value={ contextValue }>

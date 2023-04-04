@@ -6,6 +6,8 @@ const api = axios.create({
 
 const requestLogin = async (endpoint, body) => api.post(endpoint, body);
 
+const requestProducts = async (endpoint) => api.get(endpoint);
+
 export async function checkout(
   { products, sellerId, totalPrice, deliveryAddress, deliveryNumber },
 ) {
@@ -42,4 +44,7 @@ export async function sellers() {
   }
 }
 
-export default requestLogin;
+export {
+  requestLogin,
+  requestProducts,
+};
