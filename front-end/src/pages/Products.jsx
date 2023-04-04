@@ -4,14 +4,13 @@ import { requestProducts } from '../services/requests';
 import ProductsCard from '../components/ProductsCard';
 import HeaderCustomer from '../components/HeaderCustomer';
 import Context from '../context/Context';
-import ShoppingCart from '../components/ShoppingCart';
+import CartContext from '../context/CartContext';
+import Cart from '../components/Cart';
 
-export default function Producs() {
-  const {
-    products,
-    setProducts,
-  } = useContext(Context);
-
+export default function Products() {
+  const { products, setProducts } = useContext(Context);
+  const { cartItems } = useContext(CartContext);
+  console.log(cartItems);
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await requestProducts('/products');
@@ -34,7 +33,7 @@ export default function Producs() {
           />
         ))
       }
-      <ShoppingCart />
+      <Cart />
     </>
   );
 }

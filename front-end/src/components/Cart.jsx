@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import context from '../context/Context';
 
-function ShoppingCart() {
+function Cart() {
   const history = useHistory();
 
   const { productsInTheCart } = useContext(context);
@@ -18,7 +18,7 @@ function ShoppingCart() {
       );
       setTotalPrice(cartTotalPrice);
     }
-  }, [productsInTheCart]);
+  }, [productsInTheCart, cartItems]);
 
   return (
     <button
@@ -26,11 +26,14 @@ function ShoppingCart() {
       type="button"
       onClick={ () => history.push('/customer/checkout') }
     >
-      <p data-testid="customer_products__checkout-bottom-value">
+      <span>Ver carrinho: </span>
+      <span data-testid="customer_products__checkout-bottom-value">
+        R$
+        {' '}
         { (totalPrice.toFixed(2)).toString().replace('.', ',') }
-      </p>
+      </span>
     </button>
   );
 }
 
-export default ShoppingCart;
+export default Cart;

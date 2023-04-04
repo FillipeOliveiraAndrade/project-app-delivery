@@ -4,7 +4,6 @@ import Context from '../context/Context';
 
 function ProductsCard({ product }) {
   const { productsInTheCart, setProductsInTheCart } = useContext(Context);
-
   const [counter, setCounter] = useState(0);
 
   const customerProducts = 'customer_products__element';
@@ -51,6 +50,7 @@ function ProductsCard({ product }) {
         data-testid={ `customer_products__img-card-bg-image-${product.id}` }
         src={ product.url_image }
         alt={ product.name }
+        width="100px"
       />
 
       <p
