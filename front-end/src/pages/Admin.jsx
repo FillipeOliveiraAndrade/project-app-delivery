@@ -1,10 +1,11 @@
-import HeaderCustomer from '../components/HeaderCustomer';
+// import HeaderCustomer from '../components/HeaderCustomer';
 
 export default function Admin() {
   return (
-    <>
-      <h1>Admin</h1>
-      <HeaderCustomer />
-    </>
+    <h1>Pagina Admin</h1>
+    // <>
+    //   <h1>Admin</h1>
+    //   <HeaderCustomer />
+    // </>
   );
 }
