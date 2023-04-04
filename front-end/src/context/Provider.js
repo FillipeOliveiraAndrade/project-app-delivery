@@ -8,6 +8,7 @@ export default function Provider({ children }) {
   const contextValue = useMemo(() => ({
     products,
     setProducts,
+
   }), [products]);
 
   return (
