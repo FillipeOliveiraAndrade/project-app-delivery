@@ -14,6 +14,7 @@ import CartProvider from './context/CartProvider';
 export default function Routes() {
   return (
     <Switch>
+      <Route exact path="/admin/manage" component={ Admin } />
       <Route exact path="/" render={ () => <Redirect to="/login" /> } />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
@@ -25,7 +26,6 @@ export default function Routes() {
       </CartProvider>
       <Route exact path="/seller/orders" component={ SellerOrder } />
       <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
-      <Route exact path="/admin/manage" component={ Admin } />
     </Switch>
   );
 }
