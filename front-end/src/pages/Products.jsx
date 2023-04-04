@@ -4,13 +4,11 @@ import { requestProducts } from '../services/requests';
 import ProductsCard from '../components/ProductsCard';
 import HeaderCustomer from '../components/HeaderCustomer';
 import Context from '../context/Context';
-import CartContext from '../context/CartContext';
 import Cart from '../components/Cart';
 
 export default function Products() {
   const { products, setProducts } = useContext(Context);
-  const { cartItems } = useContext(CartContext);
-  console.log(cartItems);
+
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await requestProducts('/products');

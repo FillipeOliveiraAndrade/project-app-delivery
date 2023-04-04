@@ -1,14 +1,45 @@
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import CartContext from './CartContext';
 
 export default function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState('leo');
+  const [cart, setCart] = useState({
+    items: [],
+    total: 0,
+  });
+
+  localStorage.setItem('cartItems', JSON.stringify(cart));
+
+  const updateCart = useCallback((product) => {
+    const productExist = cart.items.find((item) => item.id === product.id);
+    const filteredCart = cart.items.filter((item) => item.id !== product.id);
+
+    if (!productExist) {
+      setCart((prevState) => ({ ...prevState, items: [...prevState.items, product] }));
+    }
+
+    if (product.quantity > 0) {
+      setCart((prevState) => ({ ...prevState, items: [...filteredCart, product] }));
+    }
+    if (product.quantity === 0) {
+      setCart((prevState) => ({ ...prevState, items: filteredCart }));
+    }
+  }, [cart]);
+
+  const sumCartItems = useCallback(() => cart.items.reduce((acc, cur) => {
+    const value = cur.quantity * cur.price;
+
+    return acc + value;
+  }, 0), [cart.items]);
+
+  useEffect(() => {
+    setCart((prev) => ({ ...prev, total: sumCartItems() }));
+  }, [cart.items, sumCartItems]);
 
   const carContextValue = useMemo(() => ({
-    cartItems,
-    setCartItems,
-  }), [cartItems]);
+    cart,
+    updateCart,
+  }), [cart, updateCart]);
 
   return (
     <CartContext.Provider value={ carContextValue }>
