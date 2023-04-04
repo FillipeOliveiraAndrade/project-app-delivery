@@ -5,6 +5,7 @@ import { requestData } from '../services/requests';
 
 export default function Provider({ children }) {
   const [sales, setSales] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -17,7 +18,9 @@ export default function Provider({ children }) {
 
   const contextValue = useMemo(() => ({
     sales,
-  }), [sales]);
+    products,
+    setProducts,
+  }), [products, sales]);
 
   return (
     <Context.Provider value={ contextValue }>

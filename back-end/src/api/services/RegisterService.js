@@ -12,10 +12,10 @@ async function register(dto) {
     }
 
     await User.create({ 
-        name,
-         email,
-         password: md5Hash,
-         });
+      name,
+      email,
+      password: md5Hash,
+    });
     return { type: null, message: '' };
 }
 
