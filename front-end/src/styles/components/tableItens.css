@@ -1,0 +1,75 @@
+.main-section {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  height: 400px;
+  margin: 42px 140px;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+table {
+  border: 1px solid rgb(169, 169, 169);
+  border-radius: 5px;
+}
+
+tr {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.address-section {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  height: 400px;
+  margin: 42px 140px;
+}
+
+.address-section select {
+  width: 300px;
+  padding: 10px ;
+}
+
+.form-address {
+  display: flex;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px #a5a5a5;
+}
+
+.fields-address {
+  margin-top: 10px;
+}
+
+.fields-address span {
+  margin: 0px 15px;
+}
+
+.fields-address select {
+  margin: 10px 15px;
+}
+
+.fields-address input {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.fields-address .address {
+  width: 500px;
+}
+
+.button-submit {
+  width: 300px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  background-color: #036b52;
+  color: #F2FFFC;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 5px;
+}

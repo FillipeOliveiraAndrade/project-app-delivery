@@ -1,11 +1,22 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
 
 export default function Provider({ children }) {
+  const [orders, setOrders] = useState([]);
+  const [loggedUser, setLoggedUser] = useState({
+    name: '',
+    email: '',
+    token: '',
+    role: '',
+  });
+
   const contextValue = useMemo(() => ({
-    teste: 'aeeeeeeeeeee',
-  }), []);
+    orders,
+    setOrders,
+    loggedUser,
+    setLoggedUser,
+  }), [orders, loggedUser]);
 
   return (
     <Context.Provider value={ contextValue }>
