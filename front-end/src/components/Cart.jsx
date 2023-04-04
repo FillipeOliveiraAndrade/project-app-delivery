@@ -29,6 +29,7 @@ function Cart() {
       type="button"
       onClick={ () => history.push('/customer/checkout') }
       className="btn-cart"
+      disabled={ total === 0 }
     >
       <span>Ver carrinho: </span>
       <span data-testid="customer_products__checkout-bottom-value">
