@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import CartContext from './CartContext';
 
-export default function CartProvider({ children }) {
-  const [cart, setCart] = useState({
-    items: [],
-    total: 0,
-  });
+const INITIAL_STATE = {
+  items: [],
+  total: 0,
+};
 
+export default function CartProvider({ children }) {
+  const cartStorage = JSON.parse(localStorage.getItem('cart'));
+  const [cart, setCart] = useState(cartStorage ?? INITIAL_STATE);
   localStorage.setItem('cart', JSON.stringify(cart));
 
   const updateCart = useCallback((product) => {
@@ -27,16 +29,16 @@ export default function CartProvider({ children }) {
     }
   }, [cart]);
 
+  const getProductById = useCallback(
+    (id) => cart.items.find((item) => item.id === id),
+    [cart.items],
+  );
+
   const sumCartItems = useCallback(() => cart.items.reduce((acc, cur) => {
     const value = cur.quantity * cur.price;
 
     return acc + value;
   }, 0), [cart.items]);
-
-  // const removeItemCheckout = (product) => {
-  //   const newCartItems = cart.items.find((item) => item.id !== product.id);
-  //   setCart((prevState) => ({ ...prevState, items: newCartItems }));
-  // };
 
   useEffect(() => {
     setCart((prev) => ({ ...prev, total: sumCartItems() }));
@@ -45,7 +47,8 @@ export default function CartProvider({ children }) {
   const carContextValue = useMemo(() => ({
     cart,
     updateCart,
-  }), [cart, updateCart]);
+    getProductById,
+  }), [cart, updateCart, getProductById]);
 
   return (
     <CartContext.Provider value={ carContextValue }>
