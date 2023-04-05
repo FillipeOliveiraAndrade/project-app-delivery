@@ -67,5 +67,5 @@
     "moduleNameMapper": {
       "^axios$": "axios/dist/axios.js"
     }
-  }  
+  }
 }
