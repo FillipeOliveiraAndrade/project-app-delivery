@@ -55,7 +55,6 @@ export default function Checkout() {
   //     products: orders,
   //   });
 
-  
   //   history.push(`/customer/orders/${result.id}`);
   // };
 
@@ -82,12 +81,14 @@ export default function Checkout() {
             </tr>
           </thead>
           <tbody>
-            {
-              cart
-                &&
-                  cart.items.map((order, index) => (
-                    <TableItens order={ order } key={ order.id } index={ index } />
-                  ))
+            {cart
+              && cart.items.map((order, index) => (
+                  <TableItens
+                    order={ order }
+                    key={ order.id }
+                    index={ index }
+                  />
+                ))
             }
           </tbody>
         </table>
