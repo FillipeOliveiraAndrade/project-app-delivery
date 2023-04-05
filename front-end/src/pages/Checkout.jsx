@@ -55,6 +55,7 @@ export default function Checkout() {
   //     products: orders,
   //   });
 
+  
   //   history.push(`/customer/orders/${result.id}`);
   // };
 
