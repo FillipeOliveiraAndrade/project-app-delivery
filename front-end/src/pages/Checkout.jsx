@@ -30,11 +30,7 @@ export default function Checkout() {
       setSellersInfo(data);
     };
     fetchSellers();
-
-    // setCart(JSON.parse(localStorage.getItem('cart')));
   }, []);
-
-  console.log(cart);
 
   useEffect(() => {
     setIsDisabled(
@@ -42,22 +38,6 @@ export default function Checkout() {
       || !customerInfo.deliveryNumber.length > 0,
     );
   }, [customerInfo]);
-
-  // const formatTotal = (newTotal) => {
-  //   const strTotal = Number(newTotal).toFixed(2);
-  //   const formatedTotal = strTotal.replace('.', ',');
-  //   return formatedTotal;
-  // };
-
-  // useEffect(() => {
-  //   const newTotal = cart.reduce((acc, order) => {
-  //     const floatPrice = parseFloat(order.price);
-  //     acc += floatPrice * order.quantity;
-  //     return acc;
-  //   }, 0);
-
-  //   setTotal(newTotal);
-  // }, [orders]);
 
   const handleChange = ({ target: { name, value } }) => {
     setCustomerInfo((prevstate) => ({
@@ -89,7 +69,6 @@ export default function Checkout() {
 
   return (
     <section>
-      { console.log('cartItems', cart.items)}
       <HeaderProducts />
       <section className="main-section">
         <h1>Finalizar Pedido</h1>
