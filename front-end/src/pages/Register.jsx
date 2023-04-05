@@ -1,5 +1,6 @@
 import '../styles/pages/register.css';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import register from '../services/register';
 
 export default function Register() {
@@ -9,10 +10,13 @@ export default function Register() {
   const [isDisable, setIsDisable] = useState(true);
   const [failCreate, setFailCreate] = useState(false);
 
+  const history = useHistory();
+
   async function tryRegister(event) {
     event.preventDefault();
     try {
       await register('/register', { email, password, name });
+      return history.push('/customer/products');
     } catch (error) {
       setFailCreate(true);
     }
