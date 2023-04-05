@@ -10,7 +10,7 @@ function OrderDetailCard(props) {
     totalPrice,
     products,
   } = props;
-  console.log(products);
+
   return (
     <section className="c-order-card">
       <div
@@ -43,10 +43,10 @@ function OrderDetailCard(props) {
           </div>
         </div>
         <div className="c-address">
-          { products.map((p, index) => (
+          { products && products.map((p, index) => (
             <div key={ p.productId }>
               <span>{index + 1}</span>
-              <span>{ p.salesProducts[0].name}</span>
+              {/* <span>{ p.salesProducts[0].name}</span> */}
             </div>
           ))}
           <div>

@@ -16,14 +16,13 @@ async function readSale(saleId) {
 
 async function readProductBySale(saleId) {
   const sales = await SaleProduct.findAll({
-    where: {
-      saleId,
-    },
-    include: [{
-      model: Product,
-      // as: 'salesProducts',
-      // required: true,
-    }],
+    where: { saleId },
+    include: [
+      { 
+        model: Product, 
+        attributes: ['id', 'name', 'price', 'url_image'], 
+      },
+    ],
   });
   return sales;
 }
