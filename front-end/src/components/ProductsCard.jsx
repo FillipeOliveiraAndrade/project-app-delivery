@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CartContext from '../context/CartContext';
 
 function ProductsCard({ product }) {
-  const { updateCart } = useContext(CartContext);
+  const { updateCart, getProductById } = useContext(CartContext);
   const [quantity, setQuantity] = useState(0);
 
   const customerProducts = 'customer_products__element';
@@ -16,6 +16,11 @@ function ProductsCard({ product }) {
       setQuantity(quantity - 1);
     }
   }
+
+  useEffect(() => {
+    const storageQuantity = getProductById(product.id);
+    if (storageQuantity) setQuantity(storageQuantity.quantity);
+  }, [getProductById, product.id]);
 
   useEffect(() => {
     updateCart({

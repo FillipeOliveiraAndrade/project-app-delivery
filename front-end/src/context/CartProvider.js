@@ -29,6 +29,8 @@ export default function CartProvider({ children }) {
     }
   }, [cart]);
 
+  const getProductById = (id) => cart.items.find((item) => item.id === id);
+
   const sumCartItems = useCallback(() => cart.items.reduce((acc, cur) => {
     const value = cur.quantity * cur.price;
 
@@ -42,7 +44,8 @@ export default function CartProvider({ children }) {
   const carContextValue = useMemo(() => ({
     cart,
     updateCart,
-  }), [cart, updateCart]);
+    getProductById,
+  }), [cart, updateCart, getProductById]);
 
   return (
     <CartContext.Provider value={ carContextValue }>
