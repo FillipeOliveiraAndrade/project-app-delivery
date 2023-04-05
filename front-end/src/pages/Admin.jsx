@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import register from '../services/register';
+import register from '../services/admin';
 
 export default function Admin() {
   const [email, setEmail] = useState('');
@@ -7,12 +7,15 @@ export default function Admin() {
   const [name, setName] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [failCreate, setFailCreate] = useState(false);
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('costumer');
 
   async function tryRegister(event) {
     event.preventDefault();
+
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
     try {
-      await register('/register', { email, password, name });
+      await register('/register/admin', { email, password, name, role }, token);
       setFailCreate(false);
     } catch (error) {
       console.log(error);
@@ -33,6 +36,7 @@ export default function Admin() {
       setIsDisable(true);
     }
   }, [email, password, name]);
+
   return (
     <form onSubmit={ register }>
       <h3>Cadastro</h3>
