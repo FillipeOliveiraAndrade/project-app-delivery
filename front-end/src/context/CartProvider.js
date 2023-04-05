@@ -29,7 +29,10 @@ export default function CartProvider({ children }) {
     }
   }, [cart]);
 
-  const getProductById = (id) => cart.items.find((item) => item.id === id);
+  const getProductById = useCallback(
+    (id) => cart.items.find((item) => item.id === id),
+    [cart.items],
+  );
 
   const sumCartItems = useCallback(() => cart.items.reduce((acc, cur) => {
     const value = cur.quantity * cur.price;
