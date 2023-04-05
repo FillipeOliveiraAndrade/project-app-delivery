@@ -1,7 +1,8 @@
 const routes = require('express').Router();
-const sellerController = require('../controllers/SalesController');
+const salesController = require('../controllers/SalesController');
 
 routes
-  .get('/sales', sellerController.readAll);
+  .get('/sales', salesController.readAll)
+  .post('/sales', salesController.createSale);
 
 module.exports = routes;

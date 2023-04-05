@@ -1,5 +1,4 @@
 const routers = require('express').Router();
-
 const loginRoutes = require('./LoginRoutes');
 const salesRoutes = require('./SalesRoutes');
 const productsRoutes = require('./ProductsRoutes');
@@ -8,6 +7,7 @@ const adminRoutes = require('./AdminRoutes');
 
 routers.use(productsRoutes);
 routers.use(loginRoutes);
+routers.use(salesRoutes);
 routers.use(registerRoutes);
 routers.use(salesRoutes);
 routers.use(adminRoutes);

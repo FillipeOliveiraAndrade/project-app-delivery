@@ -5,7 +5,14 @@ import { requestData } from '../services/requests';
 
 export default function Provider({ children }) {
   const [sales, setSales] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
+  const [loggedUser, setLoggedUser] = useState({
+    name: '',
+    email: '',
+    token: '',
+    role: '',
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -18,9 +25,13 @@ export default function Provider({ children }) {
 
   const contextValue = useMemo(() => ({
     sales,
+    orders,
+    setOrders,
+    loggedUser,
+    setLoggedUser,
     products,
     setProducts,
-  }), [products, sales]);
+  }), [orders, loggedUser, products, sales]);
 
   return (
     <Context.Provider value={ contextValue }>
