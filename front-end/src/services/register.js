@@ -7,3 +7,6 @@ const api = axios.create({
 const register = async (endpoint, body) => api.post(endpoint, body);
 
 export default register;
+
+// Precisava alterar algo pra dar commit com as mudanças do arthur junto.
+// Aproveitar e deixar um abraço aqui pra vcs. Bebam agua.
