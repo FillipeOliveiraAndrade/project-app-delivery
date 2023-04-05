@@ -22,6 +22,7 @@ export default function Provider({ children }) {
     setProducts,
   }), [products, sales]);
 
+
   return (
     <Context.Provider value={ contextValue }>
       {children}
