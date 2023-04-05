@@ -1,0 +1,48 @@
+a:link, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.c-navbar {
+  align-items: stretch;
+  display: flex;
+  height: 4rem;
+  justify-content: space-around;
+  width: 100vw;
+}
+
+.item-navbar {
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+header > a:first-of-type {
+  background: #2e3a36;
+  font-size: 1.25rem;
+}
+
+.meus-pedidos {
+  align-items: center;
+  background: #036b52;
+  display: flex;
+  flex-grow: 1;
+  font-size: 1.25rem;
+  font-weight: 700;
+  justify-content: flex-start;
+  padding: 0 50px;
+}
+
+header > p:first-of-type {
+  background: #421981;
+  color: #f2fffc;
+  font-size: 1.3rem;
+}
+
+header > a:last-of-type {
+  background: #056cf9;
+  color: #f2fffc;
+  font-size: 1rem;
+}
