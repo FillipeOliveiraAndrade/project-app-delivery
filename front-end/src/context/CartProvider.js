@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import CartContext from './CartContext';
 
 export default function CartProvider({ children }) {
@@ -8,7 +8,7 @@ export default function CartProvider({ children }) {
     total: 0,
   });
 
-  localStorage.setItem('cart', JSON.stringify(cart));
+  const cartRef = useRef(cart);
 
   const updateCart = useCallback((product) => {
     const productExist = cart.items.find((item) => item.id === product.id);
@@ -24,6 +24,18 @@ export default function CartProvider({ children }) {
 
     if (product.quantity === 0) {
       setCart((prevState) => ({ ...prevState, items: filteredCart }));
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    if (cartFromLocalStorage) setCart(cartFromLocalStorage);
+  }, []);
+
+  useEffect(() => {
+    if (cartRef.current !== cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      cartRef.current = cart;
     }
   }, [cart]);
 
