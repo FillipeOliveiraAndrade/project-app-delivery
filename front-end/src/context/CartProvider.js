@@ -34,6 +34,11 @@ export default function CartProvider({ children }) {
     [cart.items],
   );
 
+  const removeItemFromCheckout = useCallback((id) => {
+    const filteredCart = cart.items.filter((item) => item.id !== id);
+    setCart((prevState) => ({ ...prevState, items: filteredCart }));
+  }, [cart.items]);
+
   const sumCartItems = useCallback(() => cart.items.reduce((acc, cur) => {
     const value = cur.quantity * cur.price;
 
@@ -48,7 +53,8 @@ export default function CartProvider({ children }) {
     cart,
     updateCart,
     getProductById,
-  }), [cart, updateCart, getProductById]);
+    removeItemFromCheckout,
+  }), [cart, updateCart, getProductById, removeItemFromCheckout]);
 
   return (
     <CartContext.Provider value={ carContextValue }>

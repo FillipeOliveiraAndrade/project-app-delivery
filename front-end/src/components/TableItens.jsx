@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-// import { useContext } from 'react';
-// import context from '../context/CartContext';
+import { useContext } from 'react';
+import context from '../context/CartContext';
 import '../styles/components/tableItens.css';
 
 export default function TableItens({ order, index }) {
-  // const { removeItemCheckout } = useContext(context);
+  const { removeItemFromCheckout } = useContext(context);
 
   // const handleCartRemove = (id) => {
   //   const filterOrders = cart.items.filter((product) => product.id !== id);
@@ -38,7 +38,7 @@ export default function TableItens({ order, index }) {
           data-testId={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"
           name="remove"
-          // onClick={ () => removeItemCheckout(order) }
+          onClick={ () => removeItemFromCheckout(order.id) }
         >
           Remover
         </button>
