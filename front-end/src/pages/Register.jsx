@@ -18,7 +18,6 @@ export default function Register() {
       await register('/register', { email, password, name });
       return history.push('/customer/products');
     } catch (error) {
-      console.log(error);
       setFailCreate(true);
     }
   }

@@ -4,11 +4,12 @@ const jwtKey = require('fs').readFileSync(join(__dirname, '../../../jwt.evaluati
 const CustomError = require('../utils/CustomError');
 
 function Auth(req, _res, next) {
-    const { Authorization } = req.headers;
-    if (!Authorization) throw new CustomError('401', 'Token not found');
+    const { authorization } = req.headers;
+
+    if (!authorization) throw new CustomError('401', 'Token not found');
 
     try {
-      const decodedToken = jwt.verify(Authorization, jwtKey);
+      const decodedToken = jwt.verify(authorization, jwtKey);
       req.user = decodedToken;
       next();
     } catch (error) {

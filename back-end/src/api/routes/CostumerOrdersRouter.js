@@ -5,4 +5,6 @@ const customerController = require('../controllers/CustomerOrdersController');
 
 routes.get('/customer/orders', customerController.readAll);
 
+routes.get('/customer/orders/:id', customerController.readProductBySale);
+
 module.exports = routes;

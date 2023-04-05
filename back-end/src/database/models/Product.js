@@ -20,16 +20,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
       defaultValue: '',
+      field: 'url_image',
     },
   }, {
     underscored: true,
     timestamps: false,
-    modelName: 'products',
+    modelName: 'Product',
+    tableName: 'products',
   })
 
-  Product.associate = ({ SaleProduct }) => {
-    Product.hasMany(SaleProduct, { foreignKey: 'productId', as: 'productId' });
-  }
+  // Product.associate = ({ SaleProduct }) => {
+  //   Product.belongsToMany(SaleProduct, { foreignKey: 'id', as: 'salesProducts', otherKey: 'productId' });
+  // }
 
   return Product;
 }
