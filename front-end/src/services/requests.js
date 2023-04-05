@@ -8,6 +8,8 @@ const requestLogin = async (endpoint, body) => api.post(endpoint, body);
 
 const requestProducts = async (endpoint) => api.get(endpoint);
 
+const requestSales = async (endpoint, body) => api.post(endpoint, body);
+
 export async function checkout(
   { products, sellerId, totalPrice, deliveryAddress, deliveryNumber },
 ) {
@@ -47,4 +49,5 @@ export async function sellers() {
 export {
   requestLogin,
   requestProducts,
+  requestSales,
 };

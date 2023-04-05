@@ -1,36 +1,51 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
 import TableItens from '../components/TableItens';
 import context from '../context/CartContext';
+import { requestSales } from '../services/requests';
 // import { checkout } from '../services/requests';
 import '../styles/components/tableItens.css';
 
 export default function Checkout() {
-  // const history = useHistory();
+  const history = useHistory();
   const { cart } = useContext(context);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [cart, setCart] = useState([]);
-  const [sellersInfo, setSellersInfo] = useState([]);
-  // const [total, setTotal] = useState('0.00');
+  const [sellersInfo, setSellersInfo] = useState([{ id: 2, name: 'Fulana' }]);
   const [customerInfo, setCustomerInfo] = useState(
-    { sellerId: '', deliveryAddress: '', deliveryNumber: '' },
+    { deliveryAddress: '', deliveryNumber: '' },
   );
 
-  useEffect(() => {
-    const fetchSellers = async () => {
-      const result = await fetch('http://localhost:3000/customer/checkout', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: JSON.parse(localStorage.getItem('user')).token,
-        },
-      });
-      const data = await result.json();
-      setSellersInfo(data);
+  // TODO:
+  // - pegar o email do usuário
+  // - pegar o id do vendedor
+  // - salvar as info na tabela sales e retornar o id
+
+  // useEffect(() => {
+  //   const userEmail = JSON.parse(localStorage.getItem('user')).email;
+  //   function fetchUser(email) {
+  //     const { data } = requestUser('/users', email);
+  //     setUserId(data);
+  //   }
+  //   fetchUser(userEmail);
+  // }, []);
+
+  async function checkout(event) {
+    event.preventDefault();
+    setSellersInfo({ id: 2, name: 'Fulana' });
+
+    const payload = {
+      email,
+      sellerId: sellersInfo.id,
+      totalPrice: cart.total,
+      deliveryAddress: customerInfo.deliveryAddress,
+      deliveryNumber: customerInfo.deliveryNumber,
     };
-    fetchSellers();
-  }, []);
+
+    const { data } = await requestSales('/sales', payload);
+
+    history.push(`/customer/orders/${data}`);
+  }
 
   useEffect(() => {
     setIsDisabled(
@@ -100,7 +115,7 @@ export default function Checkout() {
       </section>
       <section className="address-section">
         <h2>Detalhes e Endereço para Entrega</h2>
-        <form className="form-address">
+        <form className="form-address" onSubmit={ checkout }>
           <label htmlFor="sellerId" className="fields-address">
             <span>P. Vendedora Responsável</span>
             <br />
@@ -109,7 +124,7 @@ export default function Checkout() {
               name="sellerId"
               data-testid="customer_checkout__select-seller"
               onChange={ handleChange }
-              value={ customerInfo.sellerId }
+              value={ sellersInfo[0].name }
             >
               {
                 sellersInfo.map((seller) => (
