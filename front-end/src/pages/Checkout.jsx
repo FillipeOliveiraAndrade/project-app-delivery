@@ -84,11 +84,10 @@ export default function Checkout() {
           <tbody>
             {
               cart
-                && (
+                &&
                   cart.items.map((order, index) => (
                     <TableItens order={ order } key={ order.id } index={ index } />
                   ))
-                )
             }
           </tbody>
         </table>
