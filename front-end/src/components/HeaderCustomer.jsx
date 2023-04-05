@@ -27,6 +27,7 @@ function HeaderCustomer() {
 
   function logoutCustomer() {
     localStorage.removeItem('user');
+    localStorage.removeItem('cart');
     history.push('/login');
   }
 
