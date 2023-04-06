@@ -21,7 +21,7 @@ module.exports = {
         delivery_address: "Av. Rui garcia, vila aurora",
         delivery_number: "850",
         sale_date: new Date(),
-        status: 'pendente'
+        status: 'endente'
       },
       {
         id: 3,
