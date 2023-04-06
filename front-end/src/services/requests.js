@@ -10,8 +10,13 @@ const requestProducts = async (endpoint) => api.get(endpoint);
 
 const requestSales = async (endpoint, body) => api.post(endpoint, body);
 
+const setToken = (token) => {
+  api.defaults.headers.common.Authorization = token;
+};
+
 export {
   requestLogin,
   requestProducts,
   requestSales,
+  setToken,
 };

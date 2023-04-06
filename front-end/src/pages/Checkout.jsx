@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
 import TableItens from '../components/TableItens';
 import carContext from '../context/CartContext';
-import { requestSales } from '../services/requests';
-// import { checkout } from '../services/requests';
+import { requestSales, setToken } from '../services/requests';
 import '../styles/components/tableItens.css';
 
 export default function Checkout() {
@@ -12,17 +11,12 @@ export default function Checkout() {
   const { cart, setCart, INITIAL_STATE } = useContext(carContext);
   const [isDisabled, setIsDisabled] = useState(true);
   const [sellersInfo, setSellersInfo] = useState([{ id: 2, name: 'Fulana' }]);
+  const [tokenStorage, setTokenStorage] = useState('');
   const [customerInfo, setCustomerInfo] = useState(
     { deliveryAddress: '', deliveryNumber: '' },
   );
 
-  // TODO:
-  // - pegar o email do usuário
-  // - pegar o id do vendedor
-  // - salvar as info na tabela sales e retornar o id
-
   async function checkout(event) {
-    console.log('entrou');
     event.preventDefault();
     setSellersInfo([{ id: 2, name: 'Fulana' }]);
 
@@ -38,10 +32,16 @@ export default function Checkout() {
       cartItems,
     };
 
+    setToken(tokenStorage);
+
     const { data: saleId } = await requestSales('/sales', payload);
     setCart(INITIAL_STATE);
     history.push(`/customer/orders/${saleId}`);
   }
+
+  useEffect(() => {
+    setTokenStorage(JSON.parse(localStorage.getItem('user')).token);
+  }, []);
 
   useEffect(() => {
     setIsDisabled(
@@ -56,18 +56,6 @@ export default function Checkout() {
       [name]: value,
     }));
   };
-
-  // const handleFinalize = async (event) => {
-  //   event.preventDefault();
-
-  //   const result = await checkout({
-  //     ...customerInfo,
-  //     totalPrice: total,
-  //     products: orders,
-  //   });
-
-  //   history.push(`/customer/orders/${result.id}`);
-  // };
 
   const data = [
     'Item',
