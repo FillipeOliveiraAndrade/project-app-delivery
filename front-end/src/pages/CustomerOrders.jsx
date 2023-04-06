@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HeaderCustomer from '../components/HeaderCustomer';
 import OrderCard2 from '../components/OrderCard2';
+import convertToReais from '../services/convertToReais';
 
 export default class CustomerOrders extends Component {
   constructor(props) {
@@ -35,13 +36,12 @@ export default class CustomerOrders extends Component {
         <HeaderCustomer />
         {orderInfo.map((order) => (
           <OrderCard2
+            data-testid={ `customer_products__element-order-date-${order.id}` }
             key={ order.id }
             id={ order.id }
             status={ order.status }
-            saleDate={ this.formatDate(order.sale_date) }
-            totalPrice={ order.totalPrice }
-            deliveryAddress={ order.delivery_address }
-            deliveryNumber={ order.delivery_number }
+            saleDate={ this.formatDate(order.saleDate) }
+            totalPrice={ convertToReais(order.totalPrice) }
           />
         ))}
         {/* <p>{orderInfo[0].id}</p> */}

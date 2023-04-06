@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HeaderCustomer from '../components/HeaderCustomer';
 import OrderDetailCard from '../components/OrderDetailCard';
+import convertToReais from '../services/convertToReais';
 
 export default class CustomerOrderDetails extends Component {
   constructor(props) {
@@ -39,8 +40,8 @@ export default class CustomerOrderDetails extends Component {
           key={ orderDetails.sale.id }
           id={ orderDetails.sale.id }
           status={ orderDetails.sale.status }
-          saleDate={ this.formatDate(orderDetails.sale.sale_date) }
-          totalPrice={ orderDetails.sale.totalPrice }
+          saleDate={ this.formatDate(orderDetails.sale.saleDate) }
+          totalPrice={ convertToReais(orderDetails.sale.totalPrice) }
           products={ orderDetails.products }
           seller={ orderDetails.sale.seller.name }
         />)}

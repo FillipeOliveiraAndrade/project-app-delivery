@@ -18,10 +18,13 @@ function OrderDetailCard(props) {
       </div>
       <div
         className="c-general-info"
-        data-testid={ `customer_order_details__element-order-details-label-order-${id}` }
       >
         <span>Pedido</span>
-        <span>{id}</span>
+        <span
+          data-testid="customer_order_details__element-order-details-label-order-id"
+        >
+          {id}
+        </span>
         <span
           data-testid="customer_order_details__element-order-details-label-seller-name"
         >
@@ -43,6 +46,7 @@ function OrderDetailCard(props) {
         <button
           data-testid="customer_order_details__button-delivery-check"
           type="button"
+          disabled={ status === 'Pendente' }
         >
           Marcar como entregue
         </button>
@@ -104,7 +108,7 @@ function OrderDetailCard(props) {
       </table>
       <div className="total-price">
         <span
-          data-testid={ `seller_orders__element-card-price-${id}` }
+          data-testid="customer_order_details__element-order-total-price"
         >
           { totalPrice }
         </span>

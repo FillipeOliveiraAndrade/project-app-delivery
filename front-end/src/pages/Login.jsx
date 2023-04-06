@@ -8,8 +8,26 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-
   const history = useHistory();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user !== null) {
+      switch (user.role) {
+      case 'administrator':
+        history.push('/admin/manage');
+        break;
+      case 'seller':
+        history.push('/seller/orders');
+        break;
+      case 'customer':
+        history.push('/customer/products');
+        break;
+      default:
+        break;
+      }
+    }
+  }, []);
 
   async function login(event) {
     event.preventDefault();
