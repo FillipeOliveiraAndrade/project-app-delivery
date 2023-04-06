@@ -54,6 +54,8 @@ export default function CartProvider({ children }) {
     updateCart,
     getProductById,
     removeItemFromCheckout,
+    INITIAL_STATE,
+    setCart,
   }), [cart, updateCart, getProductById, removeItemFromCheckout]);
 
   return (

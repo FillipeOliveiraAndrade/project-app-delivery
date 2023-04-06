@@ -30,7 +30,7 @@ export default class CustomerOrderDetails extends Component {
 
   render() {
     const { orderDetails } = this.state;
-    console.log(orderDetails);
+    console.log(orderDetails.products);
     return (
       <>
         <h1>CustomerOrderDetails</h1>
@@ -39,8 +39,10 @@ export default class CustomerOrderDetails extends Component {
           key={ orderDetails.sale.id }
           id={ orderDetails.sale.id }
           status={ orderDetails.sale.status }
+          saleDate={ this.formatDate(orderDetails.sale.sale_date) }
           totalPrice={ orderDetails.sale.totalPrice }
           products={ orderDetails.products }
+          seller={ orderDetails.sale.seller.name }
         />)}
       </>
     );

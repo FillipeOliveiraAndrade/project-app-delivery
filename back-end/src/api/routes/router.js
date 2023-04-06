@@ -6,6 +6,7 @@ const productsRoutes = require('./ProductsRoutes');
 const registerRoutes = require('./RegisterRoutes');
 const adminRoutes = require('./AdminRoutes');
 
+routers.use(productsRoutes);
 routers.use(loginRoutes);
 routers.use(CostumerOrdersRouter);
 routers.use(salesRoutes);

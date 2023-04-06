@@ -1,4 +1,4 @@
-const { Sale, SaleProduct, Product } = require('../../database/models');
+const { Sale, SaleProduct, Product, User } = require('../../database/models');
 
 const readAllSales = async () => { 
   const sales = await Sale.findAll(); 
@@ -10,6 +10,13 @@ async function readSale(saleId) {
     where: {
       id: saleId,
     },
+    include: [
+      { 
+      model: User,
+      as: 'seller',
+      attributes: ['name'], 
+      },
+    ],
   });
   return sales;
 }

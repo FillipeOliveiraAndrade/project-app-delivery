@@ -23,17 +23,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(9,2),
       field: 'total_price',
     },
-    delivery_address: {
+    deliveryAddress: {
       allowNull: false,
       type: DataTypes.STRING,
       field: 'delivery_address',
     },
-    delivery_number: {
+    deliveryNumber: {
       allowNull: false,
       type: DataTypes.STRING,
       field: 'delivery_number',
     },
-    sale_date: {
+    saleDate: {
       allowNull: false,
       type: DataTypes.DATE,
       field: 'sale_date',

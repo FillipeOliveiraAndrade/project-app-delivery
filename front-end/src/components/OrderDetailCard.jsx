@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/orderCard.css';
+import '../styles/components/orderDetailCard.css';
 
 function OrderDetailCard(props) {
   const {
@@ -9,63 +9,131 @@ function OrderDetailCard(props) {
     saleDate,
     totalPrice,
     products,
+    seller,
   } = props;
-
   return (
-    <section className="c-order-card">
+    <section className="c-main-section">
+      <div>
+        Detalhes do Pedido
+      </div>
       <div
-        className="c-order-number"
-        data-testid={ `seller_orders__element-order-id-${id}` }
+        className="c-general-info"
+        data-testid={ `customer_order_details__element-order-details-label-order-${id}` }
       >
         <span>Pedido</span>
         <span>{id}</span>
-        <span>P.Vend: Lacuna</span>
+        <span
+          data-testid="customer_order_details__element-order-details-label-seller-name"
+        >
+          P.Vend:
+          { seller }
+        </span>
+        <span
+          data-testid="customer_order_details__element-order-details-label-order-date"
+        >
+          {saleDate}
+        </span>
+        <span
+          data-testid={
+            `customer_order_details__element-order-details-label-delivery-status-${id}`
+          }
+        >
+          {status}
+        </span>
+        <button
+          data-testid="customer_order_details__button-delivery-check"
+          type="button"
+        >
+          Marcar como entregue
+        </button>
       </div>
-      <div className="c-order-details">
-        <div className="wrapper-order-status">
-          <span
-            data-testid={ `seller_orders__element-delivery-status-${id}` }
-          >
-            {status}
-          </span>
-          <div className="wrapper-order-info">
-            <span
-              data-testid={ `seller_orders__element-order-date-${id}` }
-            >
-              {saleDate}
-            </span>
-            <span
-              data-testid={ `seller_orders__element-card-price-${id}` }
-            >
-              { totalPrice }
-            </span>
-            <button type="button">Marcar como entregue</button>
-          </div>
-        </div>
-        <div className="c-address">
+      <table className="c-productDetail">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Sub-total</th>
+          </tr>
+        </thead>
+        <tbody>
           { products && products.map((p, index) => (
-            <div key={ p.productId }>
-              <span>{index + 1}</span>
-              {/* <span>{ p.salesProducts[0].name}</span> */}
-            </div>
+            <tr key={ index + 1 }>
+              <td
+                data-testid={
+                  `customer_order_details__element-order-table-item-number-${index}`
+                }
+              >
+                {index + 1}
+              </td>
+              <td
+                data-testid={
+                  `customer_order_details__element-order-table-name-${index}`
+                }
+              >
+                { p.Product.name}
+              </td>
+              <td
+                data-testid={
+                  `customer_order_details__element-order-table-quantity-${index}`
+                }
+              >
+                { p.quantity}
+              </td>
+              <td
+                data-testid={
+                  `customer_order_details__element-order-table-unit-price-${index}`
+                }
+              >
+                R$
+                {(p.Product.price).toString().replace('.', ',')}
+              </td>
+              <td
+                data-testid={
+                  `customer_order_details__element-order-table-sub-total-${index}`
+                }
+              >
+                R$
+                { (p.Product.price * p.quantity)
+                  .toFixed(2).toString().replace('.', ',')}
+              </td>
+            </tr>
           ))}
-          <div>
-            <span>Numero do item</span>
-            <span>Nome do produto</span>
-          </div>
-          <div>
-            <span>Numero do item</span>
-            <span>Nome do produto</span>
-          </div>
-          <div>
-            <span>Quantidade</span>
-            <span>Valor Unitário</span>
-            <span>Sub-Total</span>
-          </div>
-        </div>
+        </tbody>
+      </table>
+      <div className="total-price">
+        <span
+          data-testid={ `seller_orders__element-card-price-${id}` }
+        >
+          { totalPrice }
+        </span>
       </div>
     </section>
   );
 }
+
+const productType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  url_image: PropTypes.string.isRequired,
+});
+
+const productsType = PropTypes.shape({
+  saleId: PropTypes.number.isRequired,
+  productId: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  Product: productType.isRequired,
+});
+
+OrderDetailCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  totalPrice: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(productsType).isRequired,
+  seller: PropTypes.string.isRequired,
+};
 
 export default OrderDetailCard;

@@ -35,7 +35,7 @@ export default function TableItens({ order, index }) {
       </td>
       <td>
         <button
-          data-testId={ `customer_checkout__element-order-table-remove-${index}` }
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"
           name="remove"
           onClick={ () => removeItemFromCheckout(order.id) }
