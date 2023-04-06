@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/components/header.css';
 
-function Header() {
+function Header({ userName }) {
   return (
     <header className="c-navbar">
       <a
-        href="/seller/orders/:id"
+        href="/seller/orders"
         data-testid="customer_products__element-navbar-link-orders"
         className="item-navbar"
       >
@@ -16,17 +17,22 @@ function Header() {
         data-testid="customer_products__element-navbar-user-full-name"
         className="item-navbar"
       >
-        Fulana da silva
+        {userName}
       </p>
       <a
-        href="/seller/orders/:id"
+        href="/"
         data-testid="customer_products__element-navbar-link-logout"
         className="item-navbar"
+        onClick={ () => localStorage.removeItem('user') }
       >
         Sair
       </a>
     </header>
   );
 }
+
+Header.propTypes = {
+  userName: PropTypes.string,
+}.isRequired;
 
 export default Header;

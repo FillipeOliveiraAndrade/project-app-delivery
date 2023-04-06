@@ -11,6 +11,7 @@ routers.use(loginRoutes);
 routers.use(CostumerOrdersRouter);
 routers.use(salesRoutes);
 routers.use(registerRoutes);
+routers.use(salesRoutes);
 routers.use(adminRoutes);
 
 module.exports = routers;
