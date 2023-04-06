@@ -27,8 +27,8 @@
 
 .wrapper-order-status {
   display: flex;
-  justify-content: end;
   gap: 8px;
+  justify-content: end;
 }
 
 .total-price > span {
