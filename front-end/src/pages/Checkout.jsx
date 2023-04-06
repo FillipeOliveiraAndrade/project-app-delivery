@@ -2,14 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
 import TableItens from '../components/TableItens';
-import context from '../context/CartContext';
+import carContext from '../context/CartContext';
 import { requestSales } from '../services/requests';
 // import { checkout } from '../services/requests';
 import '../styles/components/tableItens.css';
 
 export default function Checkout() {
   const history = useHistory();
-  const { cart } = useContext(context);
+  const { cart, setCart, INITIAL_STATE } = useContext(carContext);
   const [isDisabled, setIsDisabled] = useState(true);
   const [sellersInfo, setSellersInfo] = useState([{ id: 2, name: 'Fulana' }]);
   const [customerInfo, setCustomerInfo] = useState(
@@ -21,30 +21,26 @@ export default function Checkout() {
   // - pegar o id do vendedor
   // - salvar as info na tabela sales e retornar o id
 
-  // useEffect(() => {
-  //   const userEmail = JSON.parse(localStorage.getItem('user')).email;
-  //   function fetchUser(email) {
-  //     const { data } = requestUser('/users', email);
-  //     setUserId(data);
-  //   }
-  //   fetchUser(userEmail);
-  // }, []);
-
   async function checkout(event) {
+    console.log('entrou');
     event.preventDefault();
-    setSellersInfo({ id: 2, name: 'Fulana' });
+    setSellersInfo([{ id: 2, name: 'Fulana' }]);
+
+    const cartItems = cart.items
+      .map(({ id, quantity }) => ({ productId: id, quantity }));
 
     const payload = {
-      email,
-      sellerId: sellersInfo.id,
+      email: 'zebirita@email.com',
+      sellerId: sellersInfo[0].id,
       totalPrice: cart.total,
       deliveryAddress: customerInfo.deliveryAddress,
       deliveryNumber: customerInfo.deliveryNumber,
+      cartItems,
     };
 
-    const { data } = await requestSales('/sales', payload);
-
-    history.push(`/customer/orders/${data}`);
+    const { data: saleId } = await requestSales('/sales', payload);
+    setCart(INITIAL_STATE);
+    history.push(`/customer/orders/${saleId}`);
   }
 
   useEffect(() => {
@@ -115,7 +111,7 @@ export default function Checkout() {
       </section>
       <section className="address-section">
         <h2>Detalhes e Endereço para Entrega</h2>
-        <form className="form-address" onSubmit={ checkout }>
+        <form className="form-address">
           <label htmlFor="sellerId" className="fields-address">
             <span>P. Vendedora Responsável</span>
             <br />
@@ -171,7 +167,7 @@ export default function Checkout() {
           type="submit"
           name="pedido"
           disabled={ isDisabled }
-          // onClick={ handleFinalize }
+          onClick={ checkout }
         >
           FINALIZAR PEDIDO
         </button>

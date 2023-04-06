@@ -6,7 +6,7 @@ async function findUserByEmail(email) {
 
 async function create(sale) {
   const { id: userId } = await findUserByEmail(sale.email);
-  const { sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;
+  const { sellerId, totalPrice, deliveryAddress, deliveryNumber, cartItems } = sale;
 
     const { id } = await Sale.create({
       userId,
@@ -18,13 +18,11 @@ async function create(sale) {
       status: 'Pendente',
     });
 
-  //   const promises = sale.order.map(({ id, quantity }) => SaleProduct.create({
-  //       saleId: createdSale.id,
-  //       productId: id,
-  //       quantity,
-  //     }));
-
-  //   await Promise.all(promises);
+    await Promise.all(cartItems.map(({ productId, quantity }) => SaleProduct.create({
+      saleId: id,
+      productId,
+      quantity,
+    })));
 
     return id;
 }
