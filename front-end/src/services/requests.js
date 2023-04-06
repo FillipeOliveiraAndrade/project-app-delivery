@@ -4,43 +4,20 @@ const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-export const requestLogin = async (endpoint, body) => api.post(endpoint, body);
-export const requestData = async (endpoint) => api.get(endpoint);
-export const requestProducts = async (endpoint) => api.get(endpoint);
-export async function checkout(
-  { products, sellerId, totalPrice, deliveryAddress, deliveryNumber },
-) {
-  try {
-    const { data } = await api.post(
-      '/customer/checkout',
-      {
-        products,
-        sellerId: Number(sellerId),
-        totalPrice,
-        deliveryAddress,
-        deliveryNumber: Number(deliveryNumber),
-      },
-      {
-        headers: {
-          authorization: JSON.parse(localStorage.getItem('user')).token,
-        },
-      },
-    );
-
-    return data;
-  } catch (error) {
-    return error;
-  }
-}
-
-export async function sellers() {
-  try {
-    const { data } = await api.get('/seller');
-
-    return data;
-  } catch (error) {
-    return error;
-  }
-}
+const requestLogin = async (endpoint, body) => api.post(endpoint, body);
+const requestData = async (endpoint) => api.get(endpoint);
+const requestProducts = async (endpoint) => api.get(endpoint);
+const requestSales = async (endpoint, body) => api.post(endpoint, body);
+const setToken = (token) => {
+  api.defaults.headers.common.Authorization = token;
+};
 
 export default api;
+
+export {
+  requestData,
+  requestLogin,
+  requestProducts,
+  requestSales,
+  setToken,
+};

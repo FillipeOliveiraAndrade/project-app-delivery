@@ -1,28 +1,35 @@
-const { Sale, SaleProduct } = require('../../database/models');
+const { Sale, SaleProduct, User } = require('../../database/models');
 
 async function readAll() {
   return Sale.findAll();
 }
 
-const create = async (sale) => {
-  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;
-    const saleDate = new Date();
-    const status = 'Pendente';
+async function findUserByEmail(email) {
+  return User.findOne({ where: { email } });
+}
 
-    const createdSale = await Sale.create({ 
-      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
+async function create(sale) {
+  const { id: userId } = await findUserByEmail(sale.email);
+  const { sellerId, totalPrice, deliveryAddress, deliveryNumber, cartItems } = sale;
+
+    const { id } = await Sale.create({
+      userId,
+      sellerId, 
+      totalPrice, 
+      deliveryAddress, 
+      deliveryNumber,
+      saleDate: new Date(),
+      status: 'Pendente',
     });
 
-    const promises = sale.order.map(({ id, quantity }) => SaleProduct.create({
-        saleId: createdSale.id,
-        productId: id,
-        quantity,
-      }));
+    await Promise.all(cartItems.map(({ productId, quantity }) => SaleProduct.create({
+      saleId: id,
+      productId,
+      quantity,
+    })));
 
-    await Promise.all(promises);
-
-    return createdSale;
-};
+    return id;
+}
 
 module.exports = {
   readAll,

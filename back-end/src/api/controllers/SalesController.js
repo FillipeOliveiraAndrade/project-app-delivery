@@ -5,18 +5,12 @@ async function readAll(req, res) {
   return res.status(200).json(result);
 }
 
-const createSale = async (req, res) => {
-  try {
-    const sale = req.body;
-    const createdSale = await SalesService.create(sale);
-    res.status(201).json(createdSale);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
+async function create(req, res) {
+  const result = await SalesService.create(req.body);
+  return res.status(201).json(result);
+}
 
 module.exports = {
-  createSale,
+  create,
   readAll,
 };
