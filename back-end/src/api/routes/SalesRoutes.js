@@ -1,6 +1,7 @@
-const customerRoutes = require('express').Router();
+const routes = require('express').Router();
 const SalesController = require('../controllers/SalesController');
+const Auth = require('../middlewares/Auth');
 
-customerRoutes.post('/', SalesController.createSale);
+routes.post('/sales', Auth, SalesController.create);
 
-module.exports = customerRoutes;
+module.exports = routes;

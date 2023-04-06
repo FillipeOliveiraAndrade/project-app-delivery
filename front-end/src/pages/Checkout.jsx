@@ -1,35 +1,46 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
 import TableItens from '../components/TableItens';
-import context from '../context/CartContext';
-// import { checkout } from '../services/requests';
+import carContext from '../context/CartContext';
+import { requestSales, setToken } from '../services/requests';
 import '../styles/components/tableItens.css';
 
 export default function Checkout() {
-  // const history = useHistory();
-  const { cart } = useContext(context);
+  const history = useHistory();
+  const { cart, setCart, INITIAL_STATE } = useContext(carContext);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [cart, setCart] = useState([]);
-  const [sellersInfo, setSellersInfo] = useState([]);
-  // const [total, setTotal] = useState('0.00');
+  const [sellersInfo, setSellersInfo] = useState([{ id: 2, name: 'Fulana' }]);
+  const [tokenStorage, setTokenStorage] = useState('');
   const [customerInfo, setCustomerInfo] = useState(
-    { sellerId: '', deliveryAddress: '', deliveryNumber: '' },
+    { deliveryAddress: '', deliveryNumber: '' },
   );
 
-  useEffect(() => {
-    const fetchSellers = async () => {
-      const result = await fetch('http://localhost:3000/customer/checkout', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: JSON.parse(localStorage.getItem('user')).token,
-        },
-      });
-      const data = await result.json();
-      setSellersInfo(data);
+  async function checkout(event) {
+    event.preventDefault();
+    setSellersInfo([{ id: 2, name: 'Fulana' }]);
+
+    const cartItems = cart.items
+      .map(({ id, quantity }) => ({ productId: id, quantity }));
+
+    const payload = {
+      email: 'zebirita@email.com',
+      sellerId: sellersInfo[0].id,
+      totalPrice: cart.total,
+      deliveryAddress: customerInfo.deliveryAddress,
+      deliveryNumber: customerInfo.deliveryNumber,
+      cartItems,
     };
-    fetchSellers();
+
+    setToken(tokenStorage);
+
+    const { data: saleId } = await requestSales('/sales', payload);
+    setCart(INITIAL_STATE);
+    history.push(`/customer/orders/${saleId}`);
+  }
+
+  useEffect(() => {
+    setTokenStorage(JSON.parse(localStorage.getItem('user')).token);
   }, []);
 
   useEffect(() => {
@@ -45,18 +56,6 @@ export default function Checkout() {
       [name]: value,
     }));
   };
-
-  // const handleFinalize = async (event) => {
-  //   event.preventDefault();
-
-  //   const result = await checkout({
-  //     ...customerInfo,
-  //     totalPrice: total,
-  //     products: orders,
-  //   });
-
-  //   history.push(`/customer/orders/${result.id}`);
-  // };
 
   const data = [
     'Item',
@@ -109,7 +108,7 @@ export default function Checkout() {
               name="sellerId"
               data-testid="customer_checkout__select-seller"
               onChange={ handleChange }
-              value={ customerInfo.sellerId }
+              value={ sellersInfo[0].name }
             >
               {
                 sellersInfo.map((seller) => (
@@ -156,7 +155,7 @@ export default function Checkout() {
           type="submit"
           name="pedido"
           disabled={ isDisabled }
-          // onClick={ handleFinalize }
+          onClick={ checkout }
         >
           FINALIZAR PEDIDO
         </button>
