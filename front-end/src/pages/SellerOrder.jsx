@@ -24,10 +24,10 @@ export default function SellerOrder() {
               key={ sale.id }
               orderId={ sale.id }
               status={ sale.status }
-              saleDate={ sale.sale_date }
+              saleDate={ sale.saleDate }
               totalPrice={ sale.totalPrice }
-              deliveryAddress={ sale.delivery_address }
-              deliveryNumber={ sale.delivery_number }
+              deliveryAddress={ sale.deliveryAddress }
+              deliveryNumber={ sale.deliveryNumber }
             />
           ))
         }
