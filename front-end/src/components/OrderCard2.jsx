@@ -30,7 +30,7 @@ function OrderCard2(props) {
         <span data-testid={ `customer_orders__element-order-id-${id}` }>{id}</span>
       </div>
       <div className="c-order-details">
-        <div className="wrapper-order-status">
+        <div className="wrapper-order2-status">
           <span
             data-testid={ `customer_orders__element-delivery-status-${id}` }
           >

@@ -11,7 +11,7 @@ module.exports = {
         delivery_address: "Rua Claudio Nunes, centro",
         delivery_number: "80",
         sale_date: new Date(),
-        status: 'entregue'
+        status: 'Entregue'
       },
       {
         id: 2,
@@ -21,7 +21,7 @@ module.exports = {
         delivery_address: "Av. Rui garcia, vila aurora",
         delivery_number: "850",
         sale_date: new Date(),
-        status: 'endente'
+        status: 'Pendente'
       },
       {
         id: 3,
@@ -31,12 +31,12 @@ module.exports = {
         delivery_address: "Rua Carlos Abraão, centro",
         delivery_number: "6",
         sale_date: new Date(),
-        status: 'preparando'
+        status: 'Preparando'
       },
     ])
   },
 
-  async down (queryInterface, _Sequelize) {
+  async down(queryInterface, _Sequelize) {
     await queryInterface.bulkDelete('sales', null, {});
   }
 };
