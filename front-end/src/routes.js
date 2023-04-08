@@ -18,14 +18,14 @@ export default function Routes() {
       <Route exact path="/" render={ () => <Redirect to="/login" /> } />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
+      <Route exact path="/seller/orders" component={ SellerOrder } />
+      <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
       <CartProvider>
         <Route exact path="/customer/products" component={ Products } />
         <Route exact path="/customer/checkout" component={ Checkout } />
         <Route exact path="/customer/orders" component={ CustomerOrders } />
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDetails } />
       </CartProvider>
-      <Route exact path="/seller/orders" component={ SellerOrder } />
-      <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
     </Switch>
   );
 }

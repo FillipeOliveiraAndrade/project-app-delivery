@@ -17,6 +17,9 @@ module.exports = {
           key: 'id',
         },
         field: 'user_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        foreignKey: true,
       },
       sellerId: {
         allowNull: false,
@@ -26,6 +29,9 @@ module.exports = {
           key: 'id',
         },
         field: 'seller_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        foreignKey: true,
       },
       totalPrice: {
         allowNull: false,

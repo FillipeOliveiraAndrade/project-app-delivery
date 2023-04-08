@@ -1,5 +1,9 @@
 const { Sale, SaleProduct, User } = require('../../database/models');
 
+async function readAll() {
+  return Sale.findAll();
+}
+
 async function findUserByEmail(email) {
   return User.findOne({ where: { email } });
 }
@@ -27,4 +31,7 @@ async function create(sale) {
     return id;
 }
 
-module.exports = { create };
+module.exports = {
+  readAll,
+  create,
+};

@@ -11,6 +11,10 @@ a:link, a:visited, a:hover, a:active {
   width: 100vw;
 }
 
+.c-navbar > p {
+  cursor: default;
+}
+
 .item-navbar {
   align-items: center;
   display: flex;
