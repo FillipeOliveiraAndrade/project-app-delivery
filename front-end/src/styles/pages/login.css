@@ -1,4 +1,4 @@
-.w-login {
+.w-login, .w-register {
   display: flex;
   align-items: center;
   /* gap: 12.5rem; */
@@ -7,6 +7,11 @@
 
 .w-login img {
   width: 28rem;
+}
+
+.w-register img {
+  width: 32rem;
+  padding-right: 2rem;
 }
 
 .container {
@@ -18,10 +23,9 @@
 }
 
 .container form {
-  /* background: #f2f2f2;
-  border-radius: 8px; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
   padding: 40px 20px;
   min-width: 18rem;
@@ -70,6 +74,7 @@
 .container span {
   color: red;
   font-size: 0.75rem;
+  text-align: center;
 }
 
 .btn-primary {
@@ -92,7 +97,6 @@
 .btn-secondary:hover {
   background: #2fc18c;
   color: #f2f2f2;
-  transition:
 }
 
 .container h1 {

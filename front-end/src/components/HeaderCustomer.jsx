@@ -33,33 +33,40 @@ function HeaderCustomer() {
 
   return (
     <nav className="nav-container">
-      <button
-        type="button"
-        data-testid={ `${customerProducts}-${linkProducts}` }
-        onClick={ redirectForProducts }
-      >
-        Produtos
-      </button>
+      <div className="w-nav">
+        <button
+          type="button"
+          data-testid={ `${customerProducts}-${linkProducts}` }
+          onClick={ redirectForProducts }
+          className="item-navbar"
+        >
+          Produtos
+        </button>
 
-      <button
-        type="button"
-        data-testid={ `${customerProducts}-${linkOrders}` }
-        onClick={ redirectForCustomerOrders }
-      >
-        Meus Pedidos
-      </button>
-
-      <div data-testid={ `${customerProducts}-${userFullName}` }>
-        { name }
+        <button
+          type="button"
+          data-testid={ `${customerProducts}-${linkOrders}` }
+          onClick={ redirectForCustomerOrders }
+          className="item-navbar orders"
+        >
+          Meus Pedidos
+        </button>
       </div>
+      <div className="c-empty" />
+      <div className="w-nav">
+        <p className="item-navbar" data-testid={ `${customerProducts}-${userFullName}` }>
+          { name }
+        </p>
 
-      <button
-        type="button"
-        data-testid={ `${customerProducts}-${logout}` }
-        onClick={ logoutCustomer }
-      >
-        Sair
-      </button>
+        <button
+          type="button"
+          data-testid={ `${customerProducts}-${logout}` }
+          onClick={ logoutCustomer }
+          className="item-navbar exit"
+        >
+          Sair
+        </button>
+      </div>
     </nav>
   );
 }

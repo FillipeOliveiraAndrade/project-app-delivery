@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/components/productCard.css';
 
 import CartContext from '../context/CartContext';
 
@@ -32,50 +33,56 @@ function ProductsCard({ product }) {
   }, [quantity]);
 
   return (
-    <div>
-      <h2
-        data-testid={ `${customerProducts}-${cardPrice}-${product.id}` }
-      >
-        R$
-        {' '}
-        { (product.price).toString().replace('.', ',') }
-      </h2>
+    <div className="card-container">
+      <div className="c-price">
+        <h2
+          data-testid={ `${customerProducts}-${cardPrice}-${product.id}` }
+        >
+          R$
+          {' '}
+          { (product.price).toString().replace('.', ',') }
+        </h2>
+      </div>
 
       <img
         data-testid={ `customer_products__img-card-bg-image-${product.id}` }
         src={ product.url_image }
         alt={ product.name }
-        width="100px"
       />
+      <div className="c-description">
+        <p
+          data-testid={ `${customerProducts}-${cardTitle}-${product.id}` }
+        >
+          { product.name }
+        </p>
+        <div className="w-add-cart">
 
-      <p
-        data-testid={ `${customerProducts}-${cardTitle}-${product.id}` }
-      >
-        { product.name }
-      </p>
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+            onClick={ decrement }
+            className="btn-card btn-less"
+          >
+            -
+          </button>
 
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-rm-item-${product.id}` }
-        onClick={ decrement }
-      >
-        -
-      </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${product.id}` }
+            min={ 0 }
+            value={ quantity }
+            onChange={ ({ target: { value } }) => setQuantity(parseInt(value, 10)) }
+          />
 
-      <input
-        data-testid={ `customer_products__input-card-quantity-${product.id}` }
-        min={ 0 }
-        value={ quantity }
-        onChange={ ({ target: { value } }) => setQuantity(parseInt(value, 10)) }
-      />
-
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-add-item-${product.id}` }
-        onClick={ () => setQuantity(quantity + 1) }
-      >
-        +
-      </button>
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-add-item-${product.id}` }
+            onClick={ () => setQuantity(quantity + 1) }
+            className="btn-card btn-more"
+          >
+            +
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

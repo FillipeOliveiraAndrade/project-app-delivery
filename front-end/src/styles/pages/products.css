@@ -1,0 +1,13 @@
+.c-products {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-cardProduct {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 3.125rem 10.125rem;
+  /* height: 93vh; */
+}

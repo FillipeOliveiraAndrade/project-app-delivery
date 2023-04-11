@@ -1,4 +1,42 @@
 .nav-container {
+  align-items: stretch;
   display: flex;
-  gap: 20px;
+  height: 4rem;
+  justify-content: space-between;
+}
+
+.nav-container > p {
+  cursor: default;
+}
+
+.w-nav {
+  display: flex;
+  text-transform: uppercase;
+}
+
+.w-nav button {
+  border: none;
+  cursor: pointer;
+}
+
+.w-nav button:first-child {
+  background: #2fc18c;
+  font-size: 1.25rem;
+}
+
+.orders {
+  background: #036b52;
+  font-size: 1.25rem;
+  color: #f2fffc;
+}
+
+.w-nav p:first-child {
+  background: #421981;
+  color: #f2fffc;
+}
+
+.exit {
+  background: #056cf9;
+  color: #f2fffc;
+  font-size: .875rem;
 }

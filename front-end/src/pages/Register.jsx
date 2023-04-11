@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import register from '../services/register';
+import loginImg from '../images/login.svg';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -37,58 +38,60 @@ export default function Register() {
   }, [email, password, name]);
 
   return (
-    <section className="container">
-      <form onSubmit={ register }>
-        <h1>Cadastro</h1>
-        <label htmlFor="name">
-          Nome
-          <input
-            type="name"
-            className=""
-            id="name-input"
-            value={ name }
-            onChange={ ({ target: { value } }) => setName(value) }
-            data-testid="common_register__input-name"
-            placeholder="Seu nome"
-          />
-        </label>
-        <label htmlFor="email-input">
-          Email
-          <input
-            type="email"
-            className=""
-            id="email-input"
-            value={ email }
-            onChange={ ({ target: { value } }) => setEmail(value) }
-            data-testid="common_register__input-email"
-            placeholder="seu-email@site.com.br"
-          />
-        </label>
-        <label htmlFor="password-input">
-          Senha
-          <input
-            type="password"
-            minLength="6"
-            className=""
-            id="password-input"
-            value={ password }
-            onChange={ ({ target: { value } }) => setPassword(value) }
-            data-testid="common_register__input-password"
-            placeholder="******"
-          />
-        </label>
-        <button
-          data-testid="common_register__button-register"
-          type="submit"
-          onClick={ (event) => tryRegister(event) }
-          disabled={ isDisable }
-          className="btn-primary"
-        >
-          Register
-        </button>
+    <div className="w-register">
+      <img src={ loginImg } alt="" />
+      <section className="container">
+        <form onSubmit={ register }>
+          <h1>Cadastro</h1>
+          <label htmlFor="name">
+            Nome
+            <input
+              type="name"
+              className=""
+              id="name-input"
+              value={ name }
+              onChange={ ({ target: { value } }) => setName(value) }
+              data-testid="common_register__input-name"
+              placeholder="Seu nome"
+            />
+          </label>
+          <label htmlFor="email-input">
+            Email
+            <input
+              type="email"
+              className=""
+              id="email-input"
+              value={ email }
+              onChange={ ({ target: { value } }) => setEmail(value) }
+              data-testid="common_register__input-email"
+              placeholder="seu-email@site.com.br"
+            />
+          </label>
+          <label htmlFor="password-input">
+            Senha
+            <input
+              type="password"
+              minLength="6"
+              className=""
+              id="password-input"
+              value={ password }
+              onChange={ ({ target: { value } }) => setPassword(value) }
+              data-testid="common_register__input-password"
+              placeholder="******"
+            />
+          </label>
+          <button
+            data-testid="common_register__button-register"
+            type="submit"
+            onClick={ (event) => tryRegister(event) }
+            disabled={ isDisable }
+            className="btn-primary"
+          >
+            Register
+          </button>
 
-        {
-          failCreate
+          {
+            failCreate
                 && (
                   <span
                     data-testid="common_register__element-invalid_register"
@@ -96,9 +99,10 @@ export default function Register() {
                     Email ou senha inválido
                   </span>
                 )
-        }
-      </form>
-    </section>
+          }
+        </form>
+      </section>
+    </div>
 
   );
 }

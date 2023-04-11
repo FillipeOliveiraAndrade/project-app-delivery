@@ -1,5 +1,23 @@
 .btn-cart {
-  bottom: 50px;
+  bottom: 25px;
   position: fixed;
-  right: 50px;
+  right: 40px;
+  padding: 10px 40px;
+  font-size: 1rem;
+  background: #036B52;
+  border: 0;
+  color: #f2f2f2;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.7s ease;
+}
+
+.btn-cart:hover {
+  background: #2fc18c;
+}
+
+.btn-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
