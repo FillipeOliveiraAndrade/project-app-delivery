@@ -2,6 +2,7 @@ import '../styles/pages/login.css';
 import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { requestLogin } from '../services/requests';
+import logo from '../images/terezas.png';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -71,51 +72,56 @@ export default function Login() {
   }, [email, password]);
 
   return (
-    <section className="container">
-      <form onSubmit={ login }>
-        <label htmlFor="email-input">
-          Login
-          <input
-            type="email"
-            className=""
-            id="email-input"
-            value={ email }
-            onChange={ ({ target: { value } }) => setEmail(value) }
-            data-testid="common_login__input-email"
-            placeholder="email@trybe.com"
-          />
-        </label>
-        <label htmlFor="password-input">
-          Senha
-          <input
-            type="password"
-            minLength="6"
-            className=""
-            id="password-input"
-            value={ password }
-            onChange={ ({ target: { value } }) => setPassword(value) }
-            data-testid="common_login__input-password"
-            placeholder="******"
-          />
-        </label>
-        <button
-          data-testid="common_login__button-login"
-          type="submit"
-          onClick={ (event) => login(event) }
-          disabled={ isDisabled }
-        >
-          Login
-        </button>
-        <Link to="/register">
+    <div className="w-login">
+      <img src={ logo } alt="img-login" />
+      <section className="container">
+        <form onSubmit={ login }>
+          <label htmlFor="email-input">
+            Login
+            <input
+              type="email"
+              className=""
+              id="email-input"
+              value={ email }
+              onChange={ ({ target: { value } }) => setEmail(value) }
+              data-testid="common_login__input-email"
+              placeholder="email@trybe.com"
+              autoComplete="off"
+            />
+          </label>
+          <label htmlFor="password-input">
+            Senha
+            <input
+              type="password"
+              minLength="6"
+              className=""
+              id="password-input"
+              value={ password }
+              onChange={ ({ target: { value } }) => setPassword(value) }
+              data-testid="common_login__input-password"
+              placeholder="******"
+            />
+          </label>
           <button
-            data-testid="common_login__button-register"
-            type="button"
+            data-testid="common_login__button-login"
+            type="submit"
+            onClick={ (event) => login(event) }
+            disabled={ isDisabled }
+            className="btn-primary"
           >
-            Ainda não tenho conta
+            Login
           </button>
-        </Link>
-        {
-          failedTryLogin
+          <Link to="/register">
+            <button
+              data-testid="common_login__button-register"
+              type="button"
+              className="btn-secondary"
+            >
+              Ainda não tenho conta
+            </button>
+          </Link>
+          {
+            failedTryLogin
             && (
               <span
                 data-testid="common_login__element-invalid-email"
@@ -123,8 +129,9 @@ export default function Login() {
                 Email ou senha inválido
               </span>
             )
-        }
-      </form>
-    </section>
+          }
+        </form>
+      </section>
+    </div>
   );
 }

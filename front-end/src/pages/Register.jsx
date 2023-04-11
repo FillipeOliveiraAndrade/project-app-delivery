@@ -1,4 +1,4 @@
-import '../styles/pages/register.css';
+// import '../styles/pages/register.css';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import register from '../services/register';
@@ -82,6 +82,7 @@ export default function Register() {
           type="submit"
           onClick={ (event) => tryRegister(event) }
           disabled={ isDisable }
+          className="btn-primary"
         >
           Register
         </button>
