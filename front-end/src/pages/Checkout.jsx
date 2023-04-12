@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import HeaderProducts from '../components/HeaderProducts';
@@ -71,16 +72,17 @@ export default function Checkout() {
       <HeaderProducts />
       <section className="main-section">
         <h1>Finalizar Pedido</h1>
-        <table>
-          <thead>
-            <tr>
-              {data.map((item) => (
-                <th key={ item }>{item}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {cart
+        <div className="c-table">
+          <table>
+            <thead>
+              <tr>
+                {data.map((item, index) => (
+                  <th key={ item } className={ `column-${index + 1}` }>{item}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {cart
               && cart.items.map((order, index) => (
                 <TableItens
                   order={ order }
@@ -88,9 +90,10 @@ export default function Checkout() {
                   index={ index }
                 />
               ))}
-          </tbody>
-        </table>
-        <section>
+            </tbody>
+          </table>
+        </div>
+        <section className="c-total">
           <span>Total: </span>
           <span data-testid="customer_checkout__element-order-total-price">
             {cart.total.toFixed(2).replace('.', ',')}

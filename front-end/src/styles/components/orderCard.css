@@ -6,7 +6,7 @@
   cursor: pointer;
   display: flex;
   overflow: hidden;
-  width: 25rem;
+  width: 23rem;
 }
 
 .c-order-number {
@@ -50,7 +50,9 @@
   background: #ddf5ee;
   border-radius: 8px;
   font-weight: 700;
-  padding: 5px 20px;
+  padding: .3125rem 1rem;
+  width: 110px;
+  text-align: center;
 }
 
 .c-address {

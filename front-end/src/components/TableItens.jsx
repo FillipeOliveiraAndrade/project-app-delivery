@@ -5,35 +5,39 @@ import '../styles/components/tableItens.css';
 
 export default function TableItens({ order, index }) {
   const { removeItemFromCheckout } = useContext(context);
-
-  // const handleCartRemove = (id) => {
-  //   const filterOrders = cart.items.filter((product) => product.id !== id);
-  //   setCart((prev) => ({
-  //     ...prev,
-  //     items: filterOrders,
-  //   }));
-
-  //   return filterOrders;
-  // };
-
   return (
     <tr>
-      <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        className="td-item"
+      >
         {index + 1}
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-name-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        className="td-description"
+      >
         {order.name}
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-quantity-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        className="td-quantity td-tbody"
+      >
         {order.quantity}
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        className="td-price td-tbody"
+      >
         {order.price.toFixed(2).replace('.', ',')}
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        className="td-sub-total td-tbody"
+      >
         {(order.price * order.quantity).toFixed(2).replace('.', ',')}
       </td>
-      <td>
+      <td className="td-remove">
         <button
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"

@@ -31,20 +31,21 @@ export default class CustomerOrderDetails extends Component {
 
   render() {
     const { orderDetails } = this.state;
-    console.log(orderDetails.products);
     return (
       <>
-        <h1>CustomerOrderDetails</h1>
         <HeaderCustomer />
-        {orderDetails.sale && (<OrderDetailCard
-          key={ orderDetails.sale.id }
-          id={ orderDetails.sale.id }
-          status={ orderDetails.sale.status }
-          saleDate={ this.formatDate(orderDetails.sale.saleDate) }
-          totalPrice={ convertToReais(orderDetails.sale.totalPrice) }
-          products={ orderDetails.products }
-          seller={ orderDetails.sale.seller.name }
-        />)}
+        <div className="c-customer-order-details">
+          <h1> Detalhes do Pedido</h1>
+          {orderDetails.sale && (<OrderDetailCard
+            key={ orderDetails.sale.id }
+            id={ orderDetails.sale.id }
+            status={ orderDetails.sale.status }
+            saleDate={ this.formatDate(orderDetails.sale.saleDate) }
+            totalPrice={ convertToReais(orderDetails.sale.totalPrice) }
+            products={ orderDetails.products }
+            seller={ orderDetails.sale.seller.name }
+          />)}
+        </div>
       </>
     );
   }

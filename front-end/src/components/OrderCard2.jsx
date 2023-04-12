@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/orderCard.css';
+import '../styles/components/orderCard2.css';
 import { useHistory } from 'react-router-dom';
 
 function OrderCard2(props) {
@@ -13,7 +13,7 @@ function OrderCard2(props) {
   const history = useHistory();
   return (
     <section
-      className="c-order-card"
+      className="c-order2-card"
       onClick={ () => history.push(`/customer/orders/${id}`) }
       role="button"
       tabIndex="0"
@@ -24,19 +24,20 @@ function OrderCard2(props) {
       } }
     >
       <div
-        className="c-order-number"
+        className="c-order2-number"
       >
         <span>Pedido</span>
         <span data-testid={ `customer_orders__element-order-id-${id}` }>{id}</span>
       </div>
-      <div className="c-order-details">
+      <div className="c-order2-details">
         <div className="wrapper-order2-status">
           <span
             data-testid={ `customer_orders__element-delivery-status-${id}` }
+            className={ `btn-status2-${status}` }
           >
             {status}
           </span>
-          <div className="wrapper-order-info">
+          <div className="wrapper-order2-info">
             <span
               data-testid={ `customer_orders__element-order-date-${id}` }
             >

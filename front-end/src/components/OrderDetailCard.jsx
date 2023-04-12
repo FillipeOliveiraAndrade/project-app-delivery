@@ -13,26 +13,28 @@ function OrderDetailCard(props) {
   } = props;
   return (
     <section className="c-main-section">
-      <div>
-        Detalhes do Pedido
-      </div>
       <div
         className="c-general-info"
       >
-        <span>Pedido</span>
+        {/* <span>Pedido</span> */}
         <span
           data-testid="customer_order_details__element-order-details-label-order-id"
+          className="order"
         >
+          Pedido
+          {' '}
           {id}
         </span>
         <span
           data-testid="customer_order_details__element-order-details-label-seller-name"
         >
           P.Vend:
+          {' '}
           { seller }
         </span>
         <span
           data-testid="customer_order_details__element-order-details-label-order-date"
+          className="date"
         >
           {saleDate}
         </span>
@@ -40,12 +42,14 @@ function OrderDetailCard(props) {
           data-testid={
             `customer_order_details__element-order-details-label-delivery-status-${id}`
           }
+          className={ `status-${status}` }
         >
           {status}
         </span>
         <button
           data-testid="customer_order_details__button-delivery-check"
           type="button"
+          className="btn-entregue"
           disabled={ status === 'Pendente' }
         >
           Marcar como entregue
@@ -68,6 +72,7 @@ function OrderDetailCard(props) {
                 data-testid={
                   `customer_order_details__element-order-table-item-number-${index}`
                 }
+                className="td-item"
               >
                 {index + 1}
               </td>
@@ -75,6 +80,7 @@ function OrderDetailCard(props) {
                 data-testid={
                   `customer_order_details__element-order-table-name-${index}`
                 }
+                className="td-description"
               >
                 { p.Product.name}
               </td>
@@ -82,6 +88,7 @@ function OrderDetailCard(props) {
                 data-testid={
                   `customer_order_details__element-order-table-quantity-${index}`
                 }
+                className="td-quantity td-tbody"
               >
                 { p.quantity}
               </td>
@@ -89,6 +96,7 @@ function OrderDetailCard(props) {
                 data-testid={
                   `customer_order_details__element-order-table-unit-price-${index}`
                 }
+                className="td-price td-tbody"
               >
                 R$
                 {(p.Product.price).toString().replace('.', ',')}
@@ -97,6 +105,7 @@ function OrderDetailCard(props) {
                 data-testid={
                   `customer_order_details__element-order-table-sub-total-${index}`
                 }
+                className="td-sub-total td-tbody sub-total"
               >
                 R$
                 { (p.Product.price * p.quantity)
@@ -106,7 +115,7 @@ function OrderDetailCard(props) {
           ))}
         </tbody>
       </table>
-      <div className="total-price">
+      <div className="c-total">
         <span
           data-testid="customer_order_details__element-order-total-price"
         >

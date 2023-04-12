@@ -1,5 +1,68 @@
+.c-order2-card {
+  background: #f2f2f2;
+  border: 0.25px solid #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  overflow: hidden;
+  width: 23rem;
+}
+
+.c-order2-number {
+  align-items: center;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.c-order2-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+}
+
+.wrapper-order2-status {
+  display: flex;
+  gap: 8px;
+}
+
 .wrapper-order2-status > span {
   border-radius: 8px;
   font-weight: 700;
   padding: 20px;
+  text-transform: uppercase;
+}
+
+.wrapper-order2-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 3px;
+}
+
+.wrapper-order2-info > span {
+  background: #ddf5ee;
+  border-radius: 8px;
+  font-weight: 700;
+  padding: .3125rem 1rem;
+  width: 110px;
+  text-align: center;
+}
+
+.btn-status2-Pendente, .btn-status2-pendente {
+  background: #ffd18c;
+}
+
+.btn-status2-entregue {
+  background: #b2ff9e;
+}
+
+.btn-status2-preparando {
+  background: #f1f9ac;
 }
