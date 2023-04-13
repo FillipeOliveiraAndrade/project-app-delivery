@@ -4,6 +4,7 @@ const Auth = require('../middlewares/Auth');
 const authAdmin = require('../middlewares/AuthAdmin');
 
 routes
-  .post('/register/admin', Auth, authAdmin, adminController.registeredByTheAdmin);
+  .post('/register/admin', Auth, authAdmin, adminController.registeredByTheAdmin)
+  .get('/register/admin', adminController.readAllUsers);
 
 module.exports = routes;

@@ -1,0 +1,62 @@
+.c-form form {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-input  {
+  display: flex;
+  flex-direction: column;
+  gap: .3125rem;
+}
+
+.c-input label {
+  color: #595959;
+  padding-left: .25rem;
+}
+
+.c-input input {
+  padding: .625rem;
+  width: 15.625rem;
+  border: 0.5px solid #7f7f7f;
+  font-size: 1rem;
+  color: #595959;
+}
+
+.c-input select {
+  padding: .625rem;
+  width: 10rem;
+  font-size: 1rem;
+  color: #595959;
+}
+
+.btn-cadastrar {
+  border: 0;
+  padding: .75rem 1rem;
+  border-radius: .625rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #fff;
+  background: #036b52;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-cadastrar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.c-table-users {
+  margin: 2.5rem 8.75rem;
+  /* padding: 1rem; */
+}
+
+.td-email {
+  width: 15rem;
+}
+
+.equal {
+  color: #f2f2f2;
+}

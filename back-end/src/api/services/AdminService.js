@@ -21,6 +21,11 @@ async function registerByAdmin(dto) {
     return { type: null, message: '' };
 }
 
+async function readAllUsers() {
+  return User.findAll({ attributes: { exclude: ['password'] } });
+}
+
 module.exports = {
   registerByAdmin,
+  readAllUsers,
 };

@@ -180,7 +180,7 @@ tr td button:hover {
   background: #2FC18C;
 }
 
-select, input:focus {
+.main-section select, input:focus {
   outline: 1px solid #2FC18C;
   border: 0.5px solid #2FC18C;
   border: 0;

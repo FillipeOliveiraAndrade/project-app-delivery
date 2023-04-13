@@ -9,6 +9,12 @@ async function registeredByTheAdmin(req, res, next) {
     }
 }
 
+async function readAllUsers(req, res) {
+  const users = await adminService.readAllUsers();
+  return res.status(200).json(users);
+}
+
 module.exports = {
   registeredByTheAdmin,
+  readAllUsers,
 };
